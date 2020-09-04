@@ -63,7 +63,7 @@ namespace _3D_Engine
             //Finished init of core module.
             Console.WriteLine("Fuzzy3D: Core module initalized. Initalizing other Modules.");
 
-
+            
 
             // Now find modules.
             // First we have to figure out if the engine has been supplied with the required modules
@@ -95,7 +95,7 @@ namespace _3D_Engine
                     }
                     else
                     {
-                        Console.WriteLine("Fuzzy3D: Primary module init failed. A primary Module is of the wrong type or not present.");
+                        Console.WriteLine("Fuzzy3D: Module init failed. A primary Module is of the wrong type or not present.");
                         return;
                     }
                 }
@@ -115,7 +115,7 @@ namespace _3D_Engine
                     }
                     else
                     {
-                        Console.WriteLine("Fuzzy3D: Primary module init failed. A secondary Module is of the wrong type.");
+                        Console.WriteLine("Fuzzy3D: Module init failed. A secondary Module is of the wrong type.");
                         return;
                     }
                 }
