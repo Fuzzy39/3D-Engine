@@ -10,7 +10,7 @@ namespace _3D_Engine
     static class Fuzzy3D
     {
 
-        // this is a test commit by mason.
+
 
         /* What's This?
          * ----------------------
