@@ -91,11 +91,22 @@ namespace _3D_Engine
     class FTemplate{
         protected string name;
         protected ArrayList<FPolygon> polygons;
+        
+        FTemplate(Vector3[] input){
+            for(int x = 0; input.GetLength; x++){
+                this.polygons.Add(input[x]);
+            }
+        }
     }
 
     class FObject{
         protected ArrayList<FPolygon> polygons;
-        protected Vector3 origin_pos;
+        protected Vector3 position;
+        FObject(FTemplate shape){
+            for(int x = 0; input.GetLength; x++){
+                this.polygons.Add(shape.polygons[x]);
+            }
+        }
     }
 
   
