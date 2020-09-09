@@ -157,7 +157,6 @@ namespace _3D_Engine
         
     }
 
-  
     internal class FCamera
     {
         double FOV; // Field of view, in degrees.
@@ -185,5 +184,25 @@ namespace _3D_Engine
         }
     }
 
+    internal class FScene(){
+        //FScene has it's own set of polygons which are added from the objets
+        private List<FPolygon> scene_polygons;
+        internal 
+        FScene(){
+            //I don't know what we should put in here
+        }
 
+        internal void Add_Object(FObject obj, bool Occlude){
+            //loop through all of the polygons in the template
+            for(int x = 0; x < obj.template.polygons; x++){
+                if(Occlude){
+                    //Apply occlusion
+                }else{
+                   //Add polygons to scene polygons
+                }
+            }
+        }
+    }
 }
+
+
