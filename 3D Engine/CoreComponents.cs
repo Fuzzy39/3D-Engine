@@ -90,19 +90,20 @@ namespace _3D_Engine
     }
 
     class FTemplate{
-        protected string name;
-        protected List<FPolygon> polygons;
+        internal string name;
+        internal List<FPolygon> polygons;
         
         FTemplate(Vector3[] input){
             for(int x = 0; input.GetLength; x++){
                 this.polygons.Add(input[x]);
             }
+            }
         }
     }
 
     class FObject{
-        protected List<FPolygon> polygons;
-        protected Vector3 position;
+        internal List<FPolygon> polygons;
+        internal Vector3 position;
         FObject(FTemplate shape){
             for(int x = 0; input.GetLength; x++){
                 this.polygons.Add(shape.polygons[x]);
