@@ -5,8 +5,8 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System.Numerics;
 using System.ComponentModel;
+using _3D_Engine;
 
 namespace _3D_Engine
 {
@@ -55,7 +55,7 @@ namespace _3D_Engine
     }
 
 
-    class FPolygon
+    internal class FPolygon
     {
         // okay, this should be pretty simple.
         // A polygon consists of 3 vectors, a base color, and texture.
@@ -89,23 +89,29 @@ namespace _3D_Engine
         }
     }
 
-    class FTemplate{
+    internal class FTemplate
+    {
         internal string name;
         internal List<FPolygon> polygons;
         
-        FTemplate(Vector3[] input){
-            for(int x = 0; input.GetLength; x++){
+        FTemplate(FPolygon[] input)
+        {
+            for(int x = 0; x<input.Length; x++)
+            {
                 this.polygons.Add(input[x]);
             }
-            }
+            
         }
     }
 
-    class FObject{
+    internal class FObject
+    {
         internal List<FPolygon> polygons;
         internal Vector3 position;
-        FObject(FTemplate shape){
-            for(int x = 0; input.GetLength; x++){
+        FObject(FTemplate shape)
+        {
+            for(int x = 0; x<shape.polygons.Count; x++)
+            {
                 this.polygons.Add(shape.polygons[x]);
             }
         }
