@@ -26,7 +26,7 @@ namespace _3D_Engine
     {
 
         
-        ArrayList Objects = new ArrayList();//<3DObject>;
+        List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
         internal override void init(GraphicsDeviceManager graphics)
         {
@@ -37,7 +37,7 @@ namespace _3D_Engine
 
         internal override object run() 
         {
-            return Objects;
+            return Templates;
         }
 
     }
@@ -67,33 +67,34 @@ namespace _3D_Engine
 
     abstract class ReferenceCreatorModule : Module
     {
-        ArrayList URS; // Universal Referece System
+        // URS; // Universal Referece System
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.ReferenceCreator;
 
-            URS=new ArrayList(); //< same thing
+            //URS=new Scene(/*stuff*/); //< same thing
         }
 
         internal override object  run()
         {
-            return URS;
-           
+            //return URS;
+            return null;
+
         }
     }
 
     abstract class TransformerModule : Module
     {
-        ArrayList LRS; // Local Referece System
+        List<FPolygon> LRS; // Local Referece System
 
-        internal override void init(GraphicsDeviceManager graphics)
+        internal override void init(GraphicsDeviceManager graphics, /*Scene URS*/)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.Transformer;
             
-            LRS=new ArrayList(/*stuff*/);
+            LRS=new List<FPolygon>();
         }
 
         internal override object /*ReferenceSystem*/ run()
