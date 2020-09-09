@@ -5,6 +5,7 @@ using System.Collections;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Numerics;
 
 namespace _3D_Engine
 {
@@ -85,6 +86,16 @@ namespace _3D_Engine
             this.color = color;
             this.texture = texture; 
         }
+    }
+
+    class FTemplate{
+        protected string name;
+        protected ArrayList<FPolygon> polygons;
+    }
+
+    class FObject{
+        protected ArrayList<FPolygon> polygons;
+        protected Vector3 origin_pos;
     }
 
   
