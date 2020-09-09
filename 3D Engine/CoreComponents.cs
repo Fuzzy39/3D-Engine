@@ -108,6 +108,7 @@ namespace _3D_Engine
         // I think this should be empty.  
     }
 
+
     internal class FTemplate
     {
         internal string name;
@@ -175,5 +176,14 @@ namespace _3D_Engine
             this.active = true;
         }
     }
+
+    internal class FLightSource
+    { 
+        FLightSource()
+        {
+            throw new Exception("Light sources have not been implemented.");
+        }
+    }
+
 
 }
