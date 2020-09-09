@@ -121,7 +121,7 @@ namespace _3D_Engine
         }
     }
 
-    internal class FObject
+    internal class FObject : FSceneMember
     {
         // HEY FOBJECT NEEDS A REFERENCE TO THE TEMPLATE IT IS COPYING.
 
@@ -129,6 +129,7 @@ namespace _3D_Engine
         internal Vector3 position = new Vector3();
         internal double scale;
 
+        // Don't call these! call from scene!
         internal FObject(FTemplate shape, Vector3 position)
         {
             template = shape; // we want a record of the template, not sure how useful this is, but meh.
@@ -158,7 +159,7 @@ namespace _3D_Engine
     }
 
   
-    internal class FCamera
+    internal class FCamera : FSceneMember
     {
         double FOV; // Field of view, in degrees.
         Vector3 position;
@@ -177,7 +178,7 @@ namespace _3D_Engine
         }
     }
 
-    internal class FLightSource
+    internal class FLightSource : FSceneMember
     { 
         FLightSource()
         {
@@ -185,5 +186,24 @@ namespace _3D_Engine
         }
     }
 
+    internal interface FSceneMember{ }
+
+    internal class FScene
+    {
+        internal List<FSceneMember> members = new List<FSceneMember>();
+        
+        void addObject (FTemplate shape, Vector3 position, double scale)
+        {
+            members.Add(new FObject(shape, position, scale));
+        }
+
+        void addObject(FTemplate shape, Vector3 position)
+        {
+            members.Add(new FObject(shape, position));
+        }
+
+    }
+
+ 
 
 }
