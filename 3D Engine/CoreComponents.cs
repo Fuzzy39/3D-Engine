@@ -187,7 +187,7 @@ namespace _3D_Engine
     internal class FScene(){
         //FScene has it's own set of polygons which are added from the objets
         private List<FPolygon> scene_polygons;
-        internal 
+        internal FCamera current;
         FScene(){
             //I don't know what we should put in here
         }
