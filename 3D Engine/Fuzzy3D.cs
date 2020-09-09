@@ -38,7 +38,7 @@ namespace _3D_Engine
             // Basically, for the engine to work, the user has to decide the modules that it will recive.
 
             // First, check that the core moudule is intact. ( it isn't there isn't anything here )
-            string[] requiredTypes = { "Module","ModuleTypes","3DScene", "3DObject", "3DPolygon", "ReferenceSystem", "Camera", "LightSource" };
+            string[] requiredTypes = { "Module","ModuleTypes","FScene", "FObject", "FPolygon", "FCamera", "FLightSource" };
             int failedTypes = 0;
 
             // loop through and make sure all required types exist.

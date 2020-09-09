@@ -67,39 +67,40 @@ namespace _3D_Engine
 
     abstract class ReferenceCreatorModule : Module
     {
-        //ReverenceSystem URS; // Universal Referece System
+        ArrayList URS; // Universal Referece System
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.ReferenceCreator;
 
-            //URS=new URS(/*stuff*/); < same thing
+            URS=new ArrayList(); //< same thing
         }
 
-        internal override object /*ReferenceSystem*/ run()
+        internal override object  run()
         {
-            //return URS;
-            return null;
+            return URS;
+           
         }
     }
 
     abstract class TransformerModule : Module
     {
-        //ReverenceSystem LRS; // Universal Referece System
+        ArrayList LRS; // Local Referece System
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.Transformer;
             
-            //LRS=new ReferenceSystem(/*stuff*/);
+            LRS=new ArrayList(/*stuff*/);
         }
 
         internal override object /*ReferenceSystem*/ run()
         {
-            //return LRS;
-            return null;
+            return LRS;
+         
+
         }
     }
 
