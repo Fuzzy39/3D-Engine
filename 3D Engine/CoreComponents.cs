@@ -105,7 +105,8 @@ namespace _3D_Engine
 
     enum Templates
     {
-        // I think this should be empty.    
+        // I think this should be empty.  
+    }
 
     internal class FTemplate
     {
