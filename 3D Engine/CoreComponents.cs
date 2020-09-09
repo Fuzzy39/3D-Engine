@@ -58,9 +58,9 @@ namespace _3D_Engine
         // okay, this should be pretty simple.
         // A polygon consists of 3 vectors, a base color, and texture.
         // We could get deeper into the weeds about this stuff, but we won't get there.
-        protected Vector3[] verticies; // public is fine, right
-        protected Color color;
-        protected Texture texture;
+        internal Vector3[] verticies; // public is fine, right
+        internal Color color;
+        internal Texture texture;
 
         public FPolygon (Vector3[] vertices, Color color)
         {
