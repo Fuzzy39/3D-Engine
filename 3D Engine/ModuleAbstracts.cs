@@ -89,7 +89,7 @@ namespace _3D_Engine
     {
         List<FPolygon> LRS; // Local Referece System
 
-        internal override void init(GraphicsDeviceManager graphics, /*Scene URS*/)
+        internal override void init(GraphicsDeviceManager graphics /*Scene URS*/)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.Transformer;

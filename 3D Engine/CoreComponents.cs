@@ -87,37 +87,68 @@ namespace _3D_Engine
             this.color = color;
             this.texture = texture; 
         }
+
+
+
+        public void translate(float byX, float byY, float byZ )
+        {
+            for(int i = 0; i<verticies.Length;i++)
+            {
+                verticies[i].X += byX;
+                verticies[i].Y += byY;
+                verticies[i].Z += byZ;
+
+            }
+        }
     }
 
 
-
+    enum Templates
+    {
+        // I think this should be empty.    
 
     internal class FTemplate
     {
         internal string name;
         internal List<FPolygon> polygons;
         
-        FTemplate(FPolygon[] input)
+        internal FTemplate(List<FPolygon> input)
         {
-            for(int x = 0; x<input.Length; x++)
-            {
-                this.polygons.Add(input[x]);
-            }
+            polygons = input;
             
         }
     }
 
     internal class FObject
     {
-        internal List<FPolygon> polygons;
-        internal Vector3 position;
-        FObject(FTemplate shape)
+        // HEY FOBJECT NEEDS A REFERENCE TO THE TEMPLATE IT IS COPYING.
+
+        private FTemplate template;
+        internal Vector3 position = new Vector3();
+        internal double scale;
+
+        internal FObject(FTemplate shape, Vector3 position)
         {
-            for(int x = 0; x<shape.polygons.Count; x++)
-            {
-                this.polygons.Add(shape.polygons[x]);
-            }
+            template = shape; // we want a record of the template, not sure how useful this is, but meh.
+            this.position = position;
+            scale = 1;
+
         }
+
+        internal FObject(FTemplate shape, Vector3 position, double scale)
+        {
+            template = shape; // we want a record of the template, not sure how useful this is, but meh.
+            this.position = position;
+            this.scale = scale;
+
+        }
+
+        internal List<FPolygon> getGeometry()
+        {
+            return template.polygons;
+        }
+
+        
     }
 
   
