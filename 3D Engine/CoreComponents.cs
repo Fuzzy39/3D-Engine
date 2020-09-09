@@ -139,19 +139,40 @@ namespace _3D_Engine
         {
             template = shape; // we want a record of the template, not sure how useful this is, but meh.
             this.position = position;
+            if(scale<0)
+            {
+                throw new System.Exception("Objects cannot be negatively scaled!");
+            }
             this.scale = scale;
 
         }
 
-        internal List<FPolygon> getGeometry()
+        internal FTemplate getGeometry()
         {
-            return template.polygons;
+            return template;
         }
 
         
     }
 
   
+    internal class FCamera
+    {
+        double FOV; // Field of view, in degrees.
+        Vector3 position;
+        public bool active; // whether the camera is the one being piped to the screen.
+        // And some variable for angle, that we will currently ignore.
 
+        FCamera(Vector3 position, double FOV)
+        {
+            if( FOV >360 || FOV<=0 )
+            {
+                throw new System.Exception("Camera's FOV must be between 0 ad 360. "+FOV+" falls outside of this range.");
+            }
+            this.FOV = FOV;
+            this.position = position;
+            this.active = true;
+        }
+    }
 
 }
