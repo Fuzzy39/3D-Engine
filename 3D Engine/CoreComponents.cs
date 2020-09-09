@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Numerics;
+using System.ComponentModel;
 
 namespace _3D_Engine
 {
@@ -90,7 +91,7 @@ namespace _3D_Engine
 
     class FTemplate{
         protected string name;
-        protected ArrayList<FPolygon> polygons;
+        protected List<FPolygon> polygons;
         
         FTemplate(Vector3[] input){
             for(int x = 0; input.GetLength; x++){
@@ -100,7 +101,7 @@ namespace _3D_Engine
     }
 
     class FObject{
-        protected ArrayList<FPolygon> polygons;
+        protected List<FPolygon> polygons;
         protected Vector3 position;
         FObject(FTemplate shape){
             for(int x = 0; input.GetLength; x++){
