@@ -44,7 +44,7 @@ namespace _3D_Engine
 
     abstract class SceneReaderModule : Module
     {
-
+        internal List<FTemplate> templates;
         FScene scene;
 
         internal override void init(GraphicsDeviceManager graphics)
@@ -67,6 +67,7 @@ namespace _3D_Engine
 
     abstract class ReferenceCreatorModule : Module
     {
+        internal FScene scene;
         List<FSceneMember> URS; // Universal Referece System
 
         internal override void init(GraphicsDeviceManager graphics)
@@ -87,6 +88,7 @@ namespace _3D_Engine
 
     abstract class TransformerModule : Module
     {
+        internal List<FSceneMember> URS;
         List<FSceneMember> LRS; // Local Referece System
 
         internal override void init(GraphicsDeviceManager graphics /*Scene URS*/)
@@ -108,6 +110,7 @@ namespace _3D_Engine
     abstract class RasterizerModule : Module
     {
         // I havent a clue what goes in here.
+        internal List<FSceneMember> LRS;
         private Color[,] screenState;
 
         internal override void init(GraphicsDeviceManager graphics)

@@ -32,7 +32,10 @@ namespace _3D_Engine
         private const int MAX_MODULES = 8;
         private const int MIN_MODULES = 5; // Note that no optional Modules can exist between or before manditory ones.
 
-        private static Vector2 screenSize;
+ 
+        private static Module[] modules;
+        private static List<FTemplate> globalTemplates;
+
         public static void initialize(Module[] setup, GraphicsDeviceManager graphics)
         {
             // Basically, for the engine to work, the user has to decide the modules that it will recive.
@@ -87,7 +90,7 @@ namespace _3D_Engine
 
             // So we should loop through the setup.
 
-            Module[] modules = new Module[MAX_MODULES];
+            modules = new Module[MAX_MODULES];
             foreach (ModuleTypes i in Enum.GetValues(typeof(ModuleTypes)))
             {
                 if ((int)i <= MIN_MODULES) // If it is a primary module...
@@ -132,7 +135,7 @@ namespace _3D_Engine
 
 
             // Now we need to initalize the objects.
-            modules[(int)ModuleTypes.ObjectReader].run();
+           globalTemplates= (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
 
 
         }
@@ -144,7 +147,35 @@ namespace _3D_Engine
                 throw new Exception("Fuzzy3D has not been properly initalized. Have you called Fuzzy3D.initalize?");
             }
 
-            Console.WriteLine("Rendering code has not yet been written.");
+            // This stuff runs once per frame.
+
+            // Scene Reader
+            ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).templates=globalTemplates;
+            FScene scene = (FScene)modules[(int)ModuleTypes.SceneReader].run();
+
+            // Reference creator
+            // give the scene to reference creator.
+            // Let's just pretend this makes any amount of sense.
+            ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).scene = scene;
+            // universal reference system.
+            List<FSceneMember> URS = (List<FSceneMember>)modules[(int)ModuleTypes.ReferenceCreator].run();
+
+            // Transformer:
+            // set ransformers URS
+            ((TransformerModule)modules[(int)ModuleTypes.Transformer]).URS = URS;
+            //Local reference System.
+            List<FSceneMember> LRS = (List<FSceneMember>)modules[(int)ModuleTypes.Transformer].run();
+
+            // Rasterizer
+            ((RasterizerModule)modules[(int)ModuleTypes.Rasterizer]).LRS = LRS;
+            modules[(int)ModuleTypes.Rasterizer].run();
+
+            // Yeah, Yeah, I'm working on it.
+            if (modules.Length>MIN_MODULES)
+            {
+                throw new Exception("OPTIONAL MODULES HAVE NOT YET BEEN IMPLEMENTED!");
+            }
+
         }
 
     }
