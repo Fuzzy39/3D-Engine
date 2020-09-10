@@ -32,8 +32,8 @@ namespace _3D_Engine
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.Transformer;
+            
         }
-
 
         internal override object run() 
         {
