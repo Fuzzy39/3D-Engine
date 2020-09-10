@@ -45,20 +45,20 @@ namespace _3D_Engine
     abstract class SceneReaderModule : Module
     {
 
-        //3DScene scene;
+        FScene scene;
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.SceneReader;
 
-            //s`cene=new scene(/*stuff*/);
+           scene=new FScene(/*stuff*/);
         }
 
         internal override object /*scene*/ run()
         {
-            //return scene;
-            return null;
+            return scene;
+           
         }
 
 
@@ -67,34 +67,34 @@ namespace _3D_Engine
 
     abstract class ReferenceCreatorModule : Module
     {
-        // URS; // Universal Referece System
+        List<FSceneMember> URS; // Universal Referece System
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.ReferenceCreator;
 
-            //URS=new Scene(/*stuff*/); //< same thing
+            URS=new List<FSceneMember>(/*stuff*/); //< same thing
         }
 
         internal override object  run()
         {
-            //return URS;
-            return null;
+            return URS;
+            
 
         }
     }
 
     abstract class TransformerModule : Module
     {
-        List<FPolygon> LRS; // Local Referece System
+        List<FSceneMember> LRS; // Local Referece System
 
         internal override void init(GraphicsDeviceManager graphics /*Scene URS*/)
         {
             base.init(graphics);
             base._moduleType = ModuleTypes.Transformer;
             
-            LRS=new List<FPolygon>();
+            LRS=new List<FSceneMember>();
         }
 
         internal override object /*ReferenceSystem*/ run()
@@ -123,10 +123,10 @@ namespace _3D_Engine
 
 
 
-        internal override object /*ReferenceSystem*/ run()
+        internal override object run()
         {
-            //return LRS;
-            return null;
+            
+            return screenState;
         }
     }
 

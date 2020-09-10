@@ -55,7 +55,7 @@ namespace _3D_Engine
     }
 
 
-    internal class FPolygon
+    internal class FPolygon : FSceneMember
     {
         // okay, this should be pretty simple.
         // A polygon consists of 3 vectors, a base color, and texture.
