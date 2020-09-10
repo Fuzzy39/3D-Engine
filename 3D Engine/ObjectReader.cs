@@ -28,58 +28,58 @@ namespace _3D_Engine
             //second triangle on the first yz plane
             current_polygon[0] = new Vector3(0, 1, 0);
             current_polygon[1] = new Vector3(0, 1, 1);
-            current_polygon[3] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(0, 0, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //First triangle on the first xz plane
             current_polygon[0] = new Vector3(0, 0, 0);
             current_polygon[1] = new Vector3(1, 0, 0);
-            current_polygon[3] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(0, 0, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //Second triangle on the first xz plane
             current_polygon[0] = new Vector3(1, 0, 1);
             current_polygon[1] = new Vector3(1, 0, 0);
-            current_polygon[3] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(0, 0, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //First triangle on the first xy plane
             current_polygon[0] = new Vector3(0, 0, 0);
             current_polygon[1] = new Vector3(1, 0, 0);
-            current_polygon[3] = new Vector3(0, 1, 0);
+            current_polygon[2] = new Vector3(0, 1, 0);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //Second triangle on the first xy plane
             current_polygon[0] = new Vector3(1, 1, 0);
             current_polygon[1] = new Vector3(1, 0, 0);
-            current_polygon[3] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(0, 0, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
 
             //First triangle on the second yz plane
             current_polygon[0] = new Vector3(1, 1, 1);
             current_polygon[1] = new Vector3(1, 1, 0);
-            current_polygon[3] = new Vector3(1, 0, 1);
+            current_polygon[2] = new Vector3(1, 0, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //second triangle on the second yz plane
             current_polygon[0] = new Vector3(1, 0, 0);
             current_polygon[1] = new Vector3(1, 1, 0);
-            current_polygon[3] = new Vector3(1, 0, 1);
+            current_polygon[2] = new Vector3(1, 0, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //First triangle on the second xz plane
             current_polygon[0] = new Vector3(0, 1, 0);
             current_polygon[1] = new Vector3(1, 1, 0);
-            current_polygon[3] = new Vector3(0, 1, 1);
+            current_polygon[2] = new Vector3(0, 1, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //Second triangle on the second xz plane
             current_polygon[0] = new Vector3(1, 1, 1);
             current_polygon[1] = new Vector3(1, 1, 0);
-            current_polygon[3] = new Vector3(0, 1, 1);
+            current_polygon[2] = new Vector3(0, 1, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //First triangle on the second xy plane
             current_polygon[0] = new Vector3(0, 0, 1);
             current_polygon[1] = new Vector3(1, 0, 1);
-            current_polygon[3] = new Vector3(0, 1, 1);
+            current_polygon[2] = new Vector3(0, 1, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             //Second triangle on the second xy plane
             current_polygon[0] = new Vector3(1, 1, 1);
             current_polygon[1] = new Vector3(1, 0, 1);
-            current_polygon[3] = new Vector3(0, 1, 1);
+            current_polygon[2] = new Vector3(0, 1, 1);
             currant_shape_holder.Add(FPolygon(current_polygon, color.grey);
             Template.Add(FTemplate(current_shape_holder));
             Template[0].name = "Cube";
