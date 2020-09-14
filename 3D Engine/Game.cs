@@ -44,7 +44,8 @@ namespace _3D_Engine
         {
             // TODO: Add your initialization logic here
             // Thanks, monogame, we'll need this note.
-            Fuzzy3D.initialize(new Module[] { null }, _graphics);
+            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator() };
+            Fuzzy3D.initialize(moduleSetup, _graphics);
             base.Initialize();
         }
 
@@ -63,7 +64,7 @@ namespace _3D_Engine
 
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
-
+            //Fuzzy3D.Render();
             base.Update(gameTime);
         }
 

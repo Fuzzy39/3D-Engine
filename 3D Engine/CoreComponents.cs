@@ -125,7 +125,7 @@ namespace _3D_Engine
     {
         // HEY FOBJECT NEEDS A REFERENCE TO THE TEMPLATE IT IS COPYING.
 
-        private FTemplate template;
+        internal FTemplate template;
         internal Vector3 position = new Vector3();
         internal double scale;
 
@@ -166,7 +166,7 @@ namespace _3D_Engine
         public bool active; // whether the camera is the one being piped to the screen.
         // And some variable for angle, that we will currently ignore.
 
-        FCamera(Vector3 position, double FOV)
+        internal FCamera(Vector3 position, double FOV)
         {
             if( FOV >360 || FOV<=0 )
             {
@@ -192,12 +192,12 @@ namespace _3D_Engine
     {
         internal List<FSceneMember> members = new List<FSceneMember>();
         
-        void addObject (FTemplate shape, Vector3 position, double scale)
+        internal void addObject (FTemplate shape, Vector3 position, double scale)
         {
             members.Add(new FObject(shape, position, scale));
         }
 
-        void addObject(FTemplate shape, Vector3 position)
+        internal void addObject(FTemplate shape, Vector3 position)
         {
             members.Add(new FObject(shape, position));
         }
