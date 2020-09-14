@@ -125,7 +125,7 @@ namespace _3D_Engine
     {
         // HEY FOBJECT NEEDS A REFERENCE TO THE TEMPLATE IT IS COPYING.
 
-        private FTemplate template;
+        internal FTemplate template;
         internal Vector3 position = new Vector3();
         internal double scale;
 
