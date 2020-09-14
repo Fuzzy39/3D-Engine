@@ -192,12 +192,12 @@ namespace _3D_Engine
     {
         internal List<FSceneMember> members = new List<FSceneMember>();
         
-        void addObject (FTemplate shape, Vector3 position, double scale)
+        internal void addObject (FTemplate shape, Vector3 position, double scale)
         {
             members.Add(new FObject(shape, position, scale));
         }
 
-        void addObject(FTemplate shape, Vector3 position)
+        internal void addObject(FTemplate shape, Vector3 position)
         {
             members.Add(new FObject(shape, position));
         }
