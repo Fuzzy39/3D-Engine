@@ -26,7 +26,7 @@ namespace _3D_Engine
     {
 
         
-        List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
+        internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
         internal override void init(GraphicsDeviceManager graphics)
         {

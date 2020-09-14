@@ -114,7 +114,7 @@ namespace _3D_Engine
         internal string name;
         internal List<FPolygon> polygons;
         
-        internal FTemplate(List<FPolygon> input)
+        internal FTemplate(List<FPolygon> input, String name)
         {
             polygons = input;
             
