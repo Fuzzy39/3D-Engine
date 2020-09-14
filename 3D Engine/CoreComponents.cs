@@ -166,7 +166,7 @@ namespace _3D_Engine
         public bool active; // whether the camera is the one being piped to the screen.
         // And some variable for angle, that we will currently ignore.
 
-        FCamera(Vector3 position, double FOV)
+        internal FCamera(Vector3 position, double FOV)
         {
             if( FOV >360 || FOV<=0 )
             {

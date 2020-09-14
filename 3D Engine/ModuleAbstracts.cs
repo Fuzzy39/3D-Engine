@@ -45,7 +45,7 @@ namespace _3D_Engine
     abstract class SceneReaderModule : Module
     {
         internal List<FTemplate> templates;
-        FScene scene;
+        internal FScene scene;
 
         internal override void init(GraphicsDeviceManager graphics)
         {
@@ -68,7 +68,7 @@ namespace _3D_Engine
     abstract class ReferenceCreatorModule : Module
     {
         internal FScene scene;
-        List<FSceneMember> URS; // Universal Referece System
+        internal List<FSceneMember> URS; // Universal Referece System
 
         internal override void init(GraphicsDeviceManager graphics)
         {
