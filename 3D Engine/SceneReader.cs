@@ -14,7 +14,7 @@ namespace _3D_Engine
         internal override object run()
         {
             scene.addObject(Templates[0], new Vector3(0, 0, 0), 1.0);
-            scene.Templates.Add(new FCamera(new Vector3(0.5, -10, 0), 90));
+            scene.Templates.Add(new FCamera(new Vector3(0.5, -10, 2), 90));
             return (base.run());
         }
     }
