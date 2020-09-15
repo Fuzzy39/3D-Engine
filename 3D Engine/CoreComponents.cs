@@ -161,9 +161,9 @@ namespace _3D_Engine
   
     internal class FCamera : FSceneMember
     {
-        double FOV; // Field of view, in degrees.
-        Vector3 position;
-        public bool active; // whether the camera is the one being piped to the screen.
+        internal double FOV; // Field of view, in degrees.
+        internal Vector3 position;
+        internal bool active; // whether the camera is the one being piped to the screen.
         // And some variable for angle, that we will currently ignore.
 
         internal FCamera(Vector3 position, double FOV)

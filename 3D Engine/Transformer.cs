@@ -40,10 +40,27 @@ namespace _3D_Engine
             {
                 throw new IndexOutOfRangeException();
             }
+
+            Vector3 cam = ((FCamera)URS[camera]).position;
             //Looping through the URS to set to the LRS
             for (int y = 0; y < URS.Count; y++)
             {
-                LRS[y].position = URS[y].position - URS[camera].position
+
+                if (URS[y] is FPolygon)
+                {
+                    Vector3[] prev = ((FPolygon)URS[y]).verticies;
+                    Vector3[] next = { Vector3.Subtract(prev[0], cam), Vector3.Subtract(prev[1], cam), Vector3.Subtract(prev[2], cam) };
+                    LRS.Add(new FPolygon(next, ((FPolygon)URS[y]).color));
+                    continue;
+                }
+                if (URS[y] is FCamera)
+                {
+                    Vector3 prev = ((FCamera)URS[y]).position;
+                    LRS.Add( new FCamera(Vector3.Subtract(prev,cam), ((FCamera)URS[y]).FOV));
+                    continue;
+                }
+
+                throw new Exception("Transformer does not currently handle Lightsources!");
             }
             return base.run();
         }

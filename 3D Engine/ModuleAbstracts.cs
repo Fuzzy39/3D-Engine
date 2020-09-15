@@ -89,7 +89,7 @@ namespace _3D_Engine
     abstract class TransformerModule : Module
     {
         internal List<FSceneMember> URS;
-        List<FSceneMember> LRS; // Local Referece System
+        internal List<FSceneMember> LRS; // Local Referece System
 
         internal override void init(GraphicsDeviceManager graphics /*Scene URS*/)
         {
