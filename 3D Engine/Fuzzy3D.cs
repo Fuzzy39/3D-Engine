@@ -36,7 +36,9 @@ namespace _3D_Engine
         private static Module[] modules;
         private static List<FTemplate> globalTemplates;
 
-        public static void initialize(Module[] setup, GraphicsDeviceManager graphics)
+        private static Texture2D pixel;
+
+        public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
             // Basically, for the engine to work, the user has to decide the modules that it will recive.
 
@@ -132,19 +134,30 @@ namespace _3D_Engine
             }
             initalized = true;
 
-
+            // init pixel texture.
+            pixel = new Texture2D(graphicsDevice, 1, 1);
+            Color[] colors = new Color[1];
+            colors[0] = Color.White;
+            pixel.SetData(colors);
 
             // Now we need to initalize the objects.
-           globalTemplates= (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
+            globalTemplates = (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
 
 
         }
 
-        public static void Render()
+        public static void Render( SpriteBatch sb)
         {
             if(!initalized)
             {
                 throw new Exception("Fuzzy3D has not been properly initalized. Have you called Fuzzy3D.initalize?");
+            }
+
+
+            // Yeah, Yeah, I'm working on it.
+            if (modules.Length > MIN_MODULES)
+            {
+                throw new Exception("OPTIONAL MODULES HAVE NOT YET BEEN IMPLEMENTED!");
             }
 
             // This stuff runs once per frame.
@@ -168,14 +181,25 @@ namespace _3D_Engine
 
             // Rasterizer
             ((RasterizerModule)modules[(int)ModuleTypes.Rasterizer]).LRS = LRS;
-            modules[(int)ModuleTypes.Rasterizer].run();
+            Color[,] screenState= (Color[,])(modules[(int)ModuleTypes.Rasterizer].run());
 
-            // Yeah, Yeah, I'm working on it.
-            if (modules.Length>MIN_MODULES)
+            
+
+            // okay, now we must do the drawing to the screen.
+            sb.Begin();
+
+            for (int x =0; x<screenState.GetLength(0); x++)
             {
-                throw new Exception("OPTIONAL MODULES HAVE NOT YET BEEN IMPLEMENTED!");
+                for(int y=0; y<screenState.GetLength(1); y++)
+                {
+                    // for each pixel...
+                    // Draw the pizel, no?
+                    sb.Draw(pixel, new Rectangle(x, y, 1, 1), screenState[x, y]);
+                    
+                }
             }
 
+            sb.End();
         }
 
     }

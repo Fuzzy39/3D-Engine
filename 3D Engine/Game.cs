@@ -45,7 +45,7 @@ namespace _3D_Engine
             // TODO: Add your initialization logic here
             // Thanks, monogame, we'll need this note.
             Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator() };
-            Fuzzy3D.initialize(moduleSetup, _graphics);
+            Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
             base.Initialize();
         }
 
