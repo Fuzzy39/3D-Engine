@@ -134,7 +134,7 @@ namespace _3D_Engine
     }
     abstract class WireFrameModule : Module
     {
-        private Color[,] post_wireframe_screen_State;
+        internal Color[,] post_wireframe_screen_State;
 
         internal override void init(GraphicsDeviceManager graphics)
         {
