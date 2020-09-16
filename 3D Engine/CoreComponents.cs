@@ -26,7 +26,8 @@ namespace _3D_Engine
         Rasterizer,
         OcclusionEngine,
         TextureMapper,
-        LightingEngine
+        LightingEngine,
+        WireFrame
     }
 
     abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
