@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using _3D_Engine;
+using System.Numerics;
 
 namespace _3D_Engine
 {
@@ -64,6 +65,7 @@ namespace _3D_Engine
         internal Vector3[] verticies; // public is fine, right
         internal Color color;
         internal Texture texture;
+        internal Vector2[] screenVerticies;
 
         public FPolygon (Vector3[] vertices, Color color)
         {
