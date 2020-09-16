@@ -7,3 +7,14 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using _3D_Engine;
+
+namespace _3D_Engine
+{
+    class WireFrame : WireFrameModule
+    {
+        internal override object run()
+        {
+            return base.run();
+        }
+    }
+}

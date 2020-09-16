@@ -132,7 +132,29 @@ namespace _3D_Engine
             return screenState;
         }
     }
+    abstract class WireFrameModule : Module
+    {
+        private Color[,] post_wireframe_screen_State;
 
+        internal override void init(GraphicsDeviceManager graphics)
+        {
+            base.init(graphics);
+            base._moduleType = ModuleTypes.Rasterizer;
+
+            //This needs to get screen size...
+            int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            post_wireframe_screen_State = new Color[Width, Height];
+        }
+
+
+
+        internal override object run()
+        {
+            
+            return post_wireframe_screen_State;
+        }
+    }
     // And when the core module is more complete, Secondary modules should be added.
 
 
