@@ -36,7 +36,10 @@ namespace _3D_Engine
         private static Module[] modules;
         private static List<FTemplate> globalTemplates;
 
-        private static Texture2D pixel;
+        private static Texture2D pixel; 
+        internal static FCamera activeCamera;
+
+        public static int scaleFactor = 4;
 
         public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
@@ -79,7 +82,7 @@ namespace _3D_Engine
             // If the array is too small to fit all required modules, or larger than the amount of total modules, we fail init.
             if(setup.Length < MIN_MODULES || setup.Length > MAX_MODULES ) // These numbers shouldn't change, but this is kind of bad practice.
             {
-                Console.WriteLine("Fuzzy3D: Module init failed. The module setup is incorrectly formatted.");
+                Console.WriteLine("Fuzzy3D: Module init failed. The module setup is incorrectly formatted. ");
                 return;
             }
 
@@ -95,6 +98,11 @@ namespace _3D_Engine
             modules = new Module[MAX_MODULES];
             foreach (ModuleTypes i in Enum.GetValues(typeof(ModuleTypes)))
             {
+                if((int)i>setup.Length-1)
+                {
+                    break;
+                }
+
                 if ((int)i <= MIN_MODULES) // If it is a primary module...
                 {
                     if (setup[(int)i] != null && setup[(int)i].moduleType == i) // and it is the proper type... and not null...
@@ -103,7 +111,8 @@ namespace _3D_Engine
                     }
                     else
                     {
-                        Console.WriteLine("Fuzzy3D: Module init failed. A primary Module is of the wrong type or not present.");
+                        // expected vs returned
+                        Console.WriteLine("Fuzzy3D: Module init failed. A primary Module is of the wrong type or not present. ("+i+" Vs. "+ setup[(int)i].moduleType + ")");
                         return;
                     }
                 }
@@ -154,30 +163,33 @@ namespace _3D_Engine
             }
 
 
-            // Yeah, Yeah, I'm working on it.
-            if (modules.Length > MIN_MODULES)
-            {
-                throw new Exception("OPTIONAL MODULES HAVE NOT YET BEEN IMPLEMENTED!");
-            }
+
 
             // This stuff runs once per frame.
 
             // Scene Reader
+            ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).scene.members.Clear();
             ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).templates=globalTemplates;
             FScene scene = (FScene)modules[(int)ModuleTypes.SceneReader].run();
+            
+         
 
             // Reference creator
             // give the scene to reference creator.
             // Let's just pretend this makes any amount of sense.
+            ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).URS.Clear();
             ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).scene = scene;
             // universal reference system.
             List<FSceneMember> URS = (List<FSceneMember>)modules[(int)ModuleTypes.ReferenceCreator].run();
 
+
             // Transformer:
             // set ransformers URS
+            ((TransformerModule)modules[(int)ModuleTypes.Transformer]).LRS.Clear();
             ((TransformerModule)modules[(int)ModuleTypes.Transformer]).URS = URS;
             //Local reference System.
             List<FSceneMember> LRS = (List<FSceneMember>)modules[(int)ModuleTypes.Transformer].run();
+            
 
             // Rasterizer
             ((RasterizerModule)modules[(int)ModuleTypes.Rasterizer]).LRS = LRS;
@@ -194,7 +206,7 @@ namespace _3D_Engine
                 {
                     // for each pixel...
                     // Draw the pizel, no?
-                    sb.Draw(pixel, new Rectangle(x, y, 1, 1), screenState[x, y]);
+                    sb.Draw(pixel, new Rectangle(scaleFactor*x, scaleFactor*y, scaleFactor, scaleFactor), screenState[x, y]);
                     
                 }
             }

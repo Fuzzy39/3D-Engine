@@ -24,14 +24,18 @@ namespace _3D_Engine
 
     abstract class ObjectReaderModule : Module
     {
+        internal ObjectReaderModule()
+        {
 
+            base._moduleType = ModuleTypes.ObjectReader;
+        }
         
         internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
-            base._moduleType = ModuleTypes.Transformer;
+            
             
         }
 
@@ -46,19 +50,24 @@ namespace _3D_Engine
     {
         internal List<FTemplate> templates;
         internal FScene scene;
+        internal SceneReaderModule()
+        {
+            base._moduleType = ModuleTypes.SceneReader;
 
+        }
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
-            base._moduleType = ModuleTypes.SceneReader;
+
 
            scene=new FScene(/*stuff*/);
         }
 
         internal override object /*scene*/ run()
         {
+            
+          
             return scene;
-           
         }
 
 
@@ -69,11 +78,16 @@ namespace _3D_Engine
     {
         internal FScene scene;
         internal List<FSceneMember> URS; // Universal Referece System
+        internal ReferenceCreatorModule()
+        {
+
+            base._moduleType = ModuleTypes.ReferenceCreator;
+        }
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
-            base._moduleType = ModuleTypes.ReferenceCreator;
+          
 
             URS=new List<FSceneMember>(/*stuff*/); //< same thing
         }
@@ -90,20 +104,23 @@ namespace _3D_Engine
     {
         internal List<FSceneMember> URS;
         internal List<FSceneMember> LRS; // Local Referece System
+        internal TransformerModule()
+        {
+            base._moduleType = ModuleTypes.Transformer;
+        }
 
         internal override void init(GraphicsDeviceManager graphics /*Scene URS*/)
         {
             base.init(graphics);
-            base._moduleType = ModuleTypes.Transformer;
+           
             
             LRS=new List<FSceneMember>();
         }
 
         internal override object /*ReferenceSystem*/ run()
         {
+            
             return LRS;
-         
-
         }
     }
 
@@ -111,17 +128,21 @@ namespace _3D_Engine
     {
         // I havent a clue what goes in here.
         internal List<FSceneMember> LRS;
-        private Color[,] screenState;
+        internal Color[,] screenState;
+        internal RasterizerModule()
+        {
+            base._moduleType = ModuleTypes.Rasterizer;
+        }
 
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
-            base._moduleType = ModuleTypes.Rasterizer;
+            
 
             //This needs to get screen size...
             int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
             int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            screenState = new Color[Width, Height];
+            screenState = new Color[Width/Fuzzy3D.scaleFactor, Height/Fuzzy3D.scaleFactor];
         }
 
 

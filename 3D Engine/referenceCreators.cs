@@ -13,13 +13,13 @@ namespace _3D_Engine
     {
         internal override object run()
         {
-
+            
             // so we loop  through all objects in the scene:
             for(int i =0; i< scene.members.Count; i++)
             {
                 // and find everything.
                 FSceneMember member = scene.members[i];
-
+                
                 if(member is FPolygon)
                 {
                     throw new Exception("Polygons should not be in scenes! Perhaps this rule is dumb, but that's not my discresion.");
@@ -46,6 +46,7 @@ namespace _3D_Engine
 
             }
             //cool.
+            
             return base.run();
 
         }

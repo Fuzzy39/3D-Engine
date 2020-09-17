@@ -1,7 +1,12 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-
+using System;
+using System.Collections.Generic;
+using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 namespace _3D_Engine
 {
     /*
@@ -44,7 +49,8 @@ namespace _3D_Engine
         {
             // TODO: Add your initialization logic here
             // Thanks, monogame, we'll need this note.
-            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator() };
+            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer() };
+            Console.WriteLine(moduleSetup[0].moduleType);
             Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
             base.Initialize();
         }
@@ -64,18 +70,18 @@ namespace _3D_Engine
 
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
-            //Fuzzy3D.Render();
+           
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.PowderBlue);
             // This is were the rendering function of the 3d engine should go, but it would cause a crash, 
             // as none of the manditory modules are there.
             // Fuzzy3D.Render();
-           
 
+            Fuzzy3D.Render(_spriteBatch);
             base.Draw(gameTime);
         
         }
