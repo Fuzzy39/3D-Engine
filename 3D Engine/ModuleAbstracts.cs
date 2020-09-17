@@ -155,6 +155,7 @@ namespace _3D_Engine
     }
     abstract class WireFrameModule : Module
     {
+        internal List<FSceneMember> LRS;
         internal Color[,] ScreenState;
 
         internal override void init(GraphicsDeviceManager graphics)

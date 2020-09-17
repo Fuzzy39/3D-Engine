@@ -29,7 +29,7 @@ namespace _3D_Engine
 
         private static bool initalized = false; // The engine must be initalized to be uzed.
 
-        private const int MAX_MODULES = 8;
+        private const int MAX_MODULES = 9;
         private const int MIN_MODULES = 5; // Note that no optional Modules can exist between or before manditory ones.
 
  
