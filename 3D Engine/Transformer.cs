@@ -59,7 +59,7 @@ namespace _3D_Engine
                 if (URS[y] is FCamera)
                 {
                     Vector3 prev = ((FCamera)URS[y]).position;
-                    LRS.Add( new FCamera(Vector3.Subtract(prev,cam), ((FCamera)URS[y]).FOV));
+                    LRS.Add( new FCamera( Vector3.Subtract(prev,cam), ((FCamera)URS[y]).FOV));
                     continue;
                 }
 
