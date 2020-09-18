@@ -159,10 +159,15 @@ namespace _3D_Engine
         internal List<FSceneMember> LRS;
         internal Color[,] ScreenState;
 
+        internal WireFrameModule ()
+        {
+            base._moduleType = ModuleTypes.WireFrame;
+        }
+
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
-            base._moduleType = ModuleTypes.Rasterizer;
+           
 
             //This needs to get screen size...
             int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;

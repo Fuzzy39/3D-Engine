@@ -25,10 +25,11 @@ namespace _3D_Engine
         ReferenceCreator,
         Transformer,
         Rasterizer,
+        WireFrame,
         OcclusionEngine,
         TextureMapper,
         LightingEngine,
-        WireFrame
+  
     }
 
     abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
@@ -65,7 +66,7 @@ namespace _3D_Engine
         internal Vector3[] verticies; // public is fine, right
         internal Color color;
         internal Texture texture;
-        internal Vector2[] screenVerticies;
+        internal Vector2[] screenVerticies = { new Vector2(-1,-1), new Vector2(-1, -1) , new Vector2(-1, -1)};
 
         public FPolygon (Vector3[] vertices, Color color)
         {

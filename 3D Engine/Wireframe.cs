@@ -14,20 +14,83 @@ namespace _3D_Engine
     {
         internal override object run()
         {
-            for(int x = 0; x < LRS.Count; x++)
+            
+            // first of all, make the screen black:
+            for (int x = 0; x < ScreenState.GetLength(0); x++)
             {
-                if (LRS[x] is FPolygon)
+                for (int y = 0; y < ScreenState.GetLength(1); y++)
                 {
-                    for(int y = 0; y < 3; y++)
-                    {
-                        //Draw line from point 0 to 1
-                        
-                        //Draw line from 1 to 2
-                        //Draw ling from 2 to 0
-                    }
-                    continue;
+
+                    ScreenState[x, y] = Color.Black;
+
                 }
             }
+
+            for (int i = 0; i < LRS.Count; i++)
+            {
+                
+                if (LRS[i] is FPolygon)
+                {
+                    FPolygon poly = (FPolygon)LRS[i];
+                    for (int j = 0;j < poly.verticies.Length;j++)
+                    {
+                        // get the 2 vector3s we will be drawing the line from.
+                        Vector2 A = poly.screenVerticies[j];
+                        Vector2 B;
+                        if (j == poly.verticies.Length - 1)
+                        {
+                            B = poly.screenVerticies[0];
+                        }
+                        else
+                        {
+                            B = poly.screenVerticies[j + 1];
+                        }
+
+                        if(A.X==-1 || B.X==-1) // check if it's undefined.
+                        {
+                          
+                            continue;
+                        }
+                     
+                        // Now we can draw the line.
+                        //yeah...
+                        //grab the rise and run.
+                        double run = (int)Math.Abs(A.X - B.X);
+                        double rise = (int)Math.Abs(A.Y - B.Y);
+                        //now what?
+                        // if it is vertical, it's simple.
+                        if(A.X==B.X)
+                        {
+                            if(A.Y==B.Y) // the points are the same.
+                            {
+                                continue;
+                            }
+
+                            for(int y = (int)(A.Y<B.Y?A.Y:B.Y); y< (int)(A.Y > B.Y ? A.Y : B.Y);y++)
+                            {
+                                ScreenState[(int)A.X, y] = Color.White;
+                            }
+
+                        }
+                        // plot it like a function?
+                        int lesserX = (int)(A.X < B.X ? A.X : B.X);
+                        int greaterX = (int)(A.X > B.X ? A.X : B.X);
+                        for (int x = lesserX; x< greaterX; x++ )
+                        {
+                            //((int)(lesserX==A.X?A.Y:B.Y))  
+                            int y =(int)((double)A.Y+((rise * (x - lesserX)) / (run)));
+                            ScreenState[x, y] = Color.White;
+                           
+                        }
+
+                        ScreenState[(int)A.X,(int)A.Y] = Color.Red;
+                        ScreenState[(int)B.X, (int)B.Y] = Color.Red;
+                    }
+                    
+                }
+            }
+
+            
             return base.run();
         }
     }

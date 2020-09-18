@@ -39,7 +39,7 @@ namespace _3D_Engine
         private static Texture2D pixel; 
         public static FCamera activeCamera=null;
 
-        public static int scaleFactor = 3;
+        public static int scaleFactor = 4;
 
         public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
@@ -194,8 +194,14 @@ namespace _3D_Engine
             // Rasterizer
             ((RasterizerModule)modules[(int)ModuleTypes.Rasterizer]).LRS = LRS;
             Color[,] screenState= (Color[,])(modules[(int)ModuleTypes.Rasterizer].run());
+            LRS = ((RasterizerModule)modules[(int)ModuleTypes.Rasterizer]).LRS;
 
-            
+            if (modules[(int)ModuleTypes.WireFrame]!=null)
+            {
+                screenState = null;
+                ((WireFrameModule)modules[(int)ModuleTypes.WireFrame]).LRS = LRS;
+                screenState = (Color[,])(modules[(int)ModuleTypes.WireFrame].run());
+            }
 
             // okay, now we must do the drawing to the screen.
             sb.Begin();

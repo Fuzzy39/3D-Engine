@@ -30,7 +30,7 @@ namespace _3D_Engine
             {
                 if(LRS[i] is FPolygon)
                 {
-                    Console.WriteLine("?" + i);
+                   
                     FPolygon poly = (FPolygon)LRS[i];
                     // now, we need to do the things!
                     // The HORROR!
@@ -53,6 +53,7 @@ namespace _3D_Engine
                         if(vert.X<=0)
                         {
                             // if it is behind the camera, it cannot be seen.
+                            ((FPolygon)LRS[i]).screenVerticies = new Vector2[3] { new Vector2(-1, -1), new Vector2(-1, -1) , new Vector2(-1, -1)};
                             continue;
                         }
                         
@@ -62,20 +63,20 @@ namespace _3D_Engine
                         // notice, we're implicitly implying that the viewport is square.
                         Vector2 viewportOrigin = new Vector2(-(float)slope*vert.X,-(float)slope*vert.X);
                         double viewportSize = (float)slope * vert.X * 2; // should be zero!
-                        //Console.WriteLine("Viewport size:" + viewportSize);
+                      
                         Vector2 locationOnViewport = Vector2.Subtract(new Vector2(vert.Z, -vert.Y), viewportOrigin);
-                       // Console.WriteLine("Location on Viewport: "+locationOnViewport.X+", "+locationOnViewport.Y);
+                      
                         
                         //okay, easy peasy, now just to get that to the screen
                         int x = (int)Math.Round((double)(locationOnViewport.X/viewportSize)*(screenState.GetLength(1)));
                         int y = (int)Math.Round((double)(locationOnViewport.Y / viewportSize) * (screenState.GetLength(1)));
-                        //Console.WriteLine("Local pos: " + vert.X +", " + vert.Y + ", " + vert.Z);
-                        //Console.WriteLine(x + ", " + y);
+                       
                         if(x>=0&y>=0&x <screenState.GetLength(1) & y<screenState.GetLength(1))
-                        { 
-                         
-                           // Console.WriteLine("HEY! at " + x + ", " + y);
-                          
+                        {
+
+
+
+                            ((FPolygon)LRS[i]).screenVerticies[j] = new Vector2(x, y);
                             screenState[x, y] = Color.White;
                         }
 
