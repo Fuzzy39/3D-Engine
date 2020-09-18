@@ -77,8 +77,8 @@ namespace _3D_Engine
                         int greaterX = (int)(A.X > B.X ? A.X : B.X);
                         for (int x = lesserX; x< greaterX; x++ )
                         {
-                            //((int)(lesserX==A.X?A.Y:B.Y))  
-                            int y =(int)((double)A.Y+((rise * (x - lesserX)) / (run)));
+                            //(
+                            int y =(int)((lesserX == A.X ? A.Y : B.Y)  +((rise * (x - lesserX)) / (run)));
                             ScreenState[x, y] = Color.White;
                            
                         }
