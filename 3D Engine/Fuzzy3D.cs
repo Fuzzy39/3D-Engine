@@ -37,9 +37,9 @@ namespace _3D_Engine
         private static List<FTemplate> globalTemplates;
 
         private static Texture2D pixel; 
-        internal static FCamera activeCamera;
+        public static FCamera activeCamera=null;
 
-        public static int scaleFactor = 4;
+        public static int scaleFactor = 3;
 
         public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {

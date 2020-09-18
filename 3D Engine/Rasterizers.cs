@@ -25,11 +25,12 @@ namespace _3D_Engine
             }
 
             double slope = Fuzzy3D.activeCamera.FOV;
+            
             for (int i = 0; i<LRS.Count; i++)
             {
                 if(LRS[i] is FPolygon)
                 {
-                   
+                    Console.WriteLine("?" + i);
                     FPolygon poly = (FPolygon)LRS[i];
                     // now, we need to do the things!
                     // The HORROR!
@@ -61,19 +62,20 @@ namespace _3D_Engine
                         // notice, we're implicitly implying that the viewport is square.
                         Vector2 viewportOrigin = new Vector2(-(float)slope*vert.X,-(float)slope*vert.X);
                         double viewportSize = (float)slope * vert.X * 2; // should be zero!
-                        Console.WriteLine("Viewport size:" + viewportSize);
-                        Vector2 locationOnViewport = Vector2.Subtract(new Vector2(vert.Z, vert.Y), viewportOrigin);
-                        Console.WriteLine("Location on Viewport: "+locationOnViewport.X+", "+locationOnViewport.Y);
+                        //Console.WriteLine("Viewport size:" + viewportSize);
+                        Vector2 locationOnViewport = Vector2.Subtract(new Vector2(vert.Z, -vert.Y), viewportOrigin);
+                       // Console.WriteLine("Location on Viewport: "+locationOnViewport.X+", "+locationOnViewport.Y);
                         
                         //okay, easy peasy, now just to get that to the screen
                         int x = (int)Math.Round((double)(locationOnViewport.X/viewportSize)*(screenState.GetLength(1)));
                         int y = (int)Math.Round((double)(locationOnViewport.Y / viewportSize) * (screenState.GetLength(1)));
                         //Console.WriteLine("Local pos: " + vert.X +", " + vert.Y + ", " + vert.Z);
                         //Console.WriteLine(x + ", " + y);
-                        if(x>=0&y>=0&x <= screenState.GetLength(1) & y<=screenState.GetLength(1))
+                        if(x>=0&y>=0&x <screenState.GetLength(1) & y<screenState.GetLength(1))
                         { 
                          
-                            Console.WriteLine("HEY! at " + x + ", " + y);
+                           // Console.WriteLine("HEY! at " + x + ", " + y);
+                          
                             screenState[x, y] = Color.White;
                         }
 

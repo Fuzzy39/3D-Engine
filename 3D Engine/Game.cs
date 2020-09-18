@@ -27,7 +27,7 @@ namespace _3D_Engine
     public class Game : Microsoft.Xna.Framework.Game
     {
 
-
+        InputHelper inputHelper = new InputHelper();
         // The actual class that I was refering to above.
 
         // Monogame kinda requires these.
@@ -51,6 +51,7 @@ namespace _3D_Engine
             _graphics.PreferredBackBufferWidth = 600; 
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
+           
             Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer() };
             Console.WriteLine(moduleSetup[0].moduleType);
             Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
@@ -69,10 +70,41 @@ namespace _3D_Engine
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            inputHelper.Update();
+            if (inputHelper.IsKeyDown(Keys.W))
+            {
+                Fuzzy3D.activeCamera.position.X += .05f;
+            }
 
+            if (inputHelper.IsKeyDown(Keys.A))
+            {
+                Fuzzy3D.activeCamera.position.Z -= .05f;
+            }
+
+            if (inputHelper.IsKeyDown(Keys.S))
+            {
+             
+                Fuzzy3D.activeCamera.position.X -= .05f;
+            }
+
+            if (inputHelper.IsKeyDown(Keys.D) )
+            {
+                Fuzzy3D.activeCamera.position.Z += .05f;
+            }
+
+            if (inputHelper.IsKeyDown(Keys.LeftShift))
+            {
+
+                Fuzzy3D.activeCamera.position.Y += .05f;
+            }
+
+            if (inputHelper.IsKeyDown(Keys.LeftControl))
+            {
+                Fuzzy3D.activeCamera.position.Y -= .05f;
+            }
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
-           
+
             base.Update(gameTime);
         }
 

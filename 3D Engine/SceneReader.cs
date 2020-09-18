@@ -15,9 +15,17 @@ namespace _3D_Engine
         {
             
             scene.addObject(templates[0], new Vector3(0, 0, 0), 1.0);
-            FCamera cam = new FCamera(new Vector3(0, 0, 0), 1);
-            cam.active = true;
-            scene.members.Add(cam);
+            if (Fuzzy3D.activeCamera == null)
+            {
+                FCamera cam = new FCamera(new Vector3(-1, .5f, 0), 1);
+                cam.active = true;
+                scene.members.Add(cam);
+            }
+            else
+            {
+                scene.members.Add(Fuzzy3D.activeCamera);
+            }
+            
             
             return (base.run());
         }
