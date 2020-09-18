@@ -18,10 +18,9 @@ namespace _3D_Engine
             {
                 for (int y = 0; y < screenState.GetLength(1); y++)
                 {
-                    if(x>screenState.GetLength(1))
-                        screenState[x, y] = Color.Black;
-                    else
-                        screenState[x, y] = Color.Red;
+                    
+                    screenState[x, y] = Color.Black;
+                    
                 }
             }
 
@@ -50,27 +49,30 @@ namespace _3D_Engine
                         */
 
                         Vector3 vert = poly.verticies[j];
-                        if(vert.X<0)
+                        if(vert.X<=0)
                         {
                             // if it is behind the camera, it cannot be seen.
                             continue;
                         }
-
+                        
                         // Now we find the size of the viewport.
                         // which requires the camera's FOV...
                         // Start by grabing the upper left corner:
                         // notice, we're implicitly implying that the viewport is square.
                         Vector2 viewportOrigin = new Vector2(-(float)slope*vert.X,-(float)slope*vert.X);
-                        double viewportSize = (float)slope * vert.X * 2;
+                        double viewportSize = (float)slope * vert.X * 2; // should be zero!
+                        Console.WriteLine("Viewport size:" + viewportSize);
                         Vector2 locationOnViewport = Vector2.Subtract(new Vector2(vert.Z, vert.Y), viewportOrigin);
+                        Console.WriteLine("Location on Viewport: "+locationOnViewport.X+", "+locationOnViewport.Y);
+                        
                         //okay, easy peasy, now just to get that to the screen
-                        int x = (int)Math.Round((double)(locationOnViewport.X/viewportSize)*(screenState.GetLength(1)/Fuzzy3D.scaleFactor));
-                        int y = (int)Math.Round((double)(locationOnViewport.Y / viewportSize) * (screenState.GetLength(1)/Fuzzy3D.scaleFactor));
-                        Console.WriteLine("Local pos: " + vert.X +", " + vert.Y + ", " + vert.Z);
-                        Console.WriteLine(x + ", " + y);
+                        int x = (int)Math.Round((double)(locationOnViewport.X/viewportSize)*(screenState.GetLength(1)));
+                        int y = (int)Math.Round((double)(locationOnViewport.Y / viewportSize) * (screenState.GetLength(1)));
+                        //Console.WriteLine("Local pos: " + vert.X +", " + vert.Y + ", " + vert.Z);
+                        //Console.WriteLine(x + ", " + y);
                         if(x>=0&y>=0&x <= screenState.GetLength(1) & y<=screenState.GetLength(1))
                         { 
-                            Console.WriteLine("Did something go right?");
+                         
                             Console.WriteLine("HEY! at " + x + ", " + y);
                             screenState[x, y] = Color.White;
                         }

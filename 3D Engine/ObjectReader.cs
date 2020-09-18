@@ -93,9 +93,9 @@ namespace _3D_Engine
              current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             */
             // finish up.
-            current_polygon[0] = new Vector3(3, 1, 0);
-            current_polygon[1] = new Vector3(3, 0, 0);
-            current_polygon[2] = new Vector3(3, -1, 0);
+            current_polygon[0] = new Vector3(1, 0, 0);
+            current_polygon[1] = new Vector3(1, 0, 0);
+            current_polygon[2] = new Vector3(1, 0, 0);
             current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
             return (base.run());

@@ -139,9 +139,10 @@ namespace _3D_Engine
             base.init(graphics);
             
 
-            //This needs to get screen size...
-            int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            //This needs to get screen size... 
+            int Height = graphics.PreferredBackBufferHeight;
+            int Width = graphics.PreferredBackBufferWidth;
+           
             screenState = new Color[Width/Fuzzy3D.scaleFactor, Height/Fuzzy3D.scaleFactor];
         }
 

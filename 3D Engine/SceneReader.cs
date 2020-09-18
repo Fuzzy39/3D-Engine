@@ -15,7 +15,7 @@ namespace _3D_Engine
         {
             
             scene.addObject(templates[0], new Vector3(0, 0, 0), 1.0);
-            FCamera cam = new FCamera(new Vector3(-10, 0, 0), 1);
+            FCamera cam = new FCamera(new Vector3(0, 0, 0), 1);
             cam.active = true;
             scene.members.Add(cam);
             
