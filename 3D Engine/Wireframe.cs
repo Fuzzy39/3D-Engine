@@ -68,7 +68,7 @@ namespace _3D_Engine
 
                             for(int y = (int)(A.Y<B.Y?A.Y:B.Y); y< (int)(A.Y > B.Y ? A.Y : B.Y);y++)
                             {
-                                ScreenState[(int)A.X, y] = Color.White;
+                                ScreenState[(int)A.X, y] = new Color(50, 50, 50);
                             }
 
                         }
@@ -79,12 +79,12 @@ namespace _3D_Engine
                         {
                             //(
                             int y =(int)((lesserX == A.X ? A.Y : B.Y)  +((rise * (x - lesserX)) / (run)));
-                            ScreenState[x, y] = Color.White;
+                            ScreenState[x, y] = new Color(50,50,50);
                            
                         }
 
-                        ScreenState[(int)A.X,(int)A.Y] = Color.Red;
-                        ScreenState[(int)B.X, (int)B.Y] = Color.Red;
+                        ScreenState[(int)A.X,(int)A.Y] = Color.White;
+                        ScreenState[(int)B.X, (int)B.Y] = Color.White;
                     }
                     
                 }
