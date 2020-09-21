@@ -102,6 +102,17 @@ namespace _3D_Engine
             {
                 Fuzzy3D.activeCamera.position.Y -= .05f;
             }
+
+            if (inputHelper.IsMouseWheelScrolledUp())
+            {
+                Fuzzy3D.activeCamera.FOV += .01;
+                Console.WriteLine(Fuzzy3D.activeCamera.FOV);
+            }
+            if (inputHelper.IsMouseWheelScrolledDown())
+            {
+                Fuzzy3D.activeCamera.FOV -= .01;
+                Console.WriteLine(Fuzzy3D.activeCamera.FOV);
+            }
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
 
