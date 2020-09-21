@@ -45,7 +45,11 @@ namespace _3D_Engine
             }
 
             Vector3 cam = ((FCamera)URS[camera]).position;
+            double camRot = ((FCamera)URS[camera]).Rotation;
+
             //Looping through the URS to set to the LRS
+            //Console.WriteLine("Before Translation: " + URS.Count);
+            List<FSceneMember> MRS = new List<FSceneMember>();
             for (int y = 0; y < URS.Count; y++)
             {
 
@@ -53,19 +57,65 @@ namespace _3D_Engine
                 {
                     Vector3[] prev = ((FPolygon)URS[y]).verticies;
                     Vector3[] next = { Vector3.Subtract(prev[0], cam), Vector3.Subtract(prev[1], cam), Vector3.Subtract(prev[2], cam) };
-                    LRS.Add(new FPolygon(next, ((FPolygon)URS[y]).color));
+                   
+                    MRS.Add(new FPolygon(next, ((FPolygon)URS[y]).color));
                     continue;
                 }
                 if (URS[y] is FCamera)
                 {
+                    //Console.WriteLine("WHat the fuck!");
+                  
                     Vector3 prev = ((FCamera)URS[y]).position;
-                    LRS.Add( new FCamera( Vector3.Subtract(prev,cam), ((FCamera)URS[y]).FOV));
+                    MRS.Add( new FCamera( Vector3.Subtract(prev,cam), ((FCamera)URS[y]).FOV));
                     continue;
                 }
 
                 throw new Exception("Transformer does not currently handle Lightsources!");
             }
+
+            // Do the same but for rotation.
+            // Note that this must occur after translation; It is dependent on it.
+         
+            for (int y = 0; y < MRS.Count; y++)
+            {
+              
+                if (MRS[y] is FPolygon)
+                {
+                   
+                 
+                    Vector3[] prev = ((FPolygon)MRS[y]).verticies;
+                    Vector3[] next = {Rotate2D(prev[0], camRot), Rotate2D(prev[1], camRot), Rotate2D(prev[2], camRot) };
+                   
+                    LRS.Add(new FPolygon(next, ((FPolygon)MRS[y]).color));
+                    
+              
+                    continue;
+                }
+                if (MRS[y] is FCamera)
+                {
+              
+                    
+                    Vector3 prev = ((FCamera)MRS[y]).position;
+                  
+                    LRS.Add(new FCamera ( Rotate2D(prev, camRot), ((FCamera)MRS[y]).FOV));
+                    
+                    continue;
+                }
+
+                throw new Exception("Transformer does not currently handle: "+URS[y].GetType());
+            }
+            //Console.WriteLine("After Rotation: " + LRS.Count);
             return base.run();
+        }
+
+        private Vector3 Rotate2D( Vector3 point, double Rotation ) // Where rotation is in tau radians.
+        {
+            double X = point.X;
+            double Y = point.Z;
+            double RadRot = Rotation / (Math.PI );
+            double NewX = (X * Math.Cos(RadRot)) - (Y * Math.Sin(RadRot));
+            double NewY = (X * Math.Sin(RadRot)) + (Y * Math.Cos(RadRot));
+            return (new Vector3((float)NewX, point.Y, (float)NewY));
         }
     }
 }

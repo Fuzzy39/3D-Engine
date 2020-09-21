@@ -105,12 +105,17 @@ namespace _3D_Engine
            
             // finish up.
             
-            /*current_polygon[0] = new Vector3(1, 0, 0);
+           /* current_polygon[0] = new Vector3(0, 0, 1);
+            current_polygon[1] = new Vector3(0, 1, 0);
+            current_polygon[2] = new Vector3(0, 0, 0);
+            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
+            current_polygon = new Vector3[3];
+            current_polygon[0] = new Vector3(0, 0, -1);
             current_polygon[1] = new Vector3(0, 1, 0);
             current_polygon[2] = new Vector3(0, 0, 0);
             current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));*/
-            
-            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
+
+            //   current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
             Console.WriteLine(current_shape_holder.Count);
             return (base.run());

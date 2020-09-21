@@ -27,6 +27,7 @@ namespace _3D_Engine
 
                 if (member is FCamera || member is FLightSource)
                 {
+                    
                     URS.Add(member);
                     continue;
                 }  
@@ -36,6 +37,7 @@ namespace _3D_Engine
                     FObject fobject = (FObject)member; // member is now an FObject in the eyes of the law!
                     for(int j = 0; j< fobject.template.polygons.Count; j++)
                     {
+                        
                         FPolygon poly = fobject.template.polygons[j];
                         URS.Add(poly);
                     }

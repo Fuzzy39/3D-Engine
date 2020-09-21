@@ -168,6 +168,7 @@ namespace _3D_Engine
         internal double FOV; // Field of view, in degrees.
         internal Vector3 position;
         internal bool active; // whether the camera is the one being piped to the screen.
+        public double Rotation = 0; // in Tau radians, where 1 is a full rotation.
         // And some variable for angle, that we will currently ignore.
 
         internal FCamera(Vector3 position, double FOV)
