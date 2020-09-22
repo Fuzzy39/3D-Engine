@@ -7,11 +7,49 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using _3D_Engine;
+using System.Security.Cryptography.X509Certificates;
+using System.Runtime.InteropServices;
 
 namespace _3D_Engine
 {
     class WireFrame : WireFrameModule
     {
+        private void Bresenham(int x, int y, int x2, int y2)
+        {
+            int w = x2 - x;
+            int h = y2 - y;
+            int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
+            if (w < 0) dx1 = -1; else if (w > 0) dx1 = 1;
+            if (h < 0) dy1 = -1; else if (h > 0) dy1 = 1;
+            if (w < 0) dx2 = -1; else if (w > 0) dx2 = 1;
+            int longest = Math.Abs(w);
+            int shortest = Math.Abs(h);
+            if (!(longest > shortest))
+            {
+                longest = Math.Abs(h);
+                shortest = Math.Abs(w);
+                if (h < 0) dy2 = -1; else if (h > 0) dy2 = 1;
+                dx2 = 0;
+            }
+            int numerator = longest >> 1;
+            for(int i = 0; i <= longest; i++)
+            {
+                ScreenState[x, y] = new Color(50, 50, 50);
+                numerator += shortest;
+                if (!(numerator<longest))
+                {
+                    numerator -= longest;
+                    x += dx1;
+                    y += dy1;
+                }
+                else
+                {
+                    x += dx2;
+                    y += dy2;
+                }
+            }
+        }
+        
         internal override object run()
         {
             
@@ -46,45 +84,7 @@ namespace _3D_Engine
                             B = poly.screenVerticies[j + 1];
                         }
 
-                        if(A.X==-1 || B.X==-1) // check if it's undefined.
-                        {
-                          
-                            continue;
-                        }
-                     
-                        // Now we can draw the line.
-                        //yeah...
-                        //grab the rise and run.
-                        double run = (int)Math.Abs(A.X - B.X);
-                        double rise = (int)Math.Abs(A.Y - B.Y);
-                        //now what?
-                        // if it is vertical, it's simple.
-                        if(A.X==B.X)
-                        {
-                            if(A.Y==B.Y) // the points are the same.
-                            {
-                                continue;
-                            }
-
-                            for(int y = (int)(A.Y<B.Y?A.Y:B.Y); y< (int)(A.Y > B.Y ? A.Y : B.Y);y++)
-                            {
-                                ScreenState[(int)A.X, y] = new Color(50, 50, 50);
-                            }
-
-                        }
-                        // plot it like a function?
-                        int lesserX = (int)(A.X < B.X ? A.X : B.X);
-                        int greaterX = (int)(A.X > B.X ? A.X : B.X);
-                        for (int x = lesserX; x< greaterX; x++ )
-                        {
-                            //(
-                            int y =(int)((lesserX == A.X ? A.Y : B.Y)  +((rise * (x - lesserX)) / (run)));
-                            ScreenState[x, y] = new Color(50,50,50);
-                           
-                        }
-
-                        ScreenState[(int)A.X,(int)A.Y] = Color.White;
-                        ScreenState[(int)B.X, (int)B.Y] = Color.White;
+                        Bresenham((int)A.X, (int)A.Y, (int)B.X, (int)B.Y);
                     }
                     
                 }
