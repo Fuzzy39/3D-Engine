@@ -52,7 +52,7 @@ namespace _3D_Engine
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
            
-            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), };
+            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer()};
             Console.WriteLine(moduleSetup[0].moduleType);
             Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
             base.Initialize();
@@ -73,34 +73,34 @@ namespace _3D_Engine
             inputHelper.Update();
             if (inputHelper.IsKeyDown(Keys.W))
             {
-                Fuzzy3D.activeCamera.position.X += .05f;
+                Fuzzy3D.activeCamera.translateRelative(new Vector3(.05f, 0, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.A))
             {
-                Fuzzy3D.activeCamera.position.Z -= .05f;
+                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, -.05f));
             }
 
             if (inputHelper.IsKeyDown(Keys.S))
             {
              
-                Fuzzy3D.activeCamera.position.X -= .05f;
+                Fuzzy3D.activeCamera.translateRelative(new Vector3(-.05f, 0, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.D) )
             {
-                Fuzzy3D.activeCamera.position.Z += .05f;
+                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, .05f));
             }
 
             if (inputHelper.IsKeyDown(Keys.LeftShift))
             {
 
-                Fuzzy3D.activeCamera.position.Y += .05f;
+                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, .05f, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.LeftControl))
             {
-                Fuzzy3D.activeCamera.position.Y -= .05f;
+                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, -.05f, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.Left))

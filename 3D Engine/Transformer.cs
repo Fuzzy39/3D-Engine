@@ -108,7 +108,7 @@ namespace _3D_Engine
             return base.run();
         }
 
-        private Vector3 Rotate2D( Vector3 point, double Rotation ) // Where rotation is in tau radians.
+        private Vector3 Rotate2D( Vector3 point, double Rotation ) // Where rotation is in pi radians.
         {
             double X = point.X;
             double Y = point.Z;

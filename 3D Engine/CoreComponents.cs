@@ -168,7 +168,7 @@ namespace _3D_Engine
         internal double FOV; // Field of view, in degrees.
         internal Vector3 position;
         internal bool active; // whether the camera is the one being piped to the screen.
-        public double Rotation = 0; // in Tau radians, where 1 is a full rotation.
+        public double Rotation = 0; // in Pi radians, where 2 is a full rotation.
         // And some variable for angle, that we will currently ignore.
 
         internal FCamera(Vector3 position, double FOV)
@@ -180,6 +180,17 @@ namespace _3D_Engine
             this.FOV = FOV;
             this.position = position;
             this.active = true;
+        }
+
+        public void translateRelative(Vector3 toTranslate)
+        {
+            double X = toTranslate.X;
+            double Z = toTranslate.Z;
+            double RadRot = -Rotation / (Math.PI);
+            double NewX = (X * Math.Cos(RadRot)) - (Z * Math.Sin(RadRot));
+            double NewZ = (X * Math.Sin(RadRot)) + (Z * Math.Cos(RadRot));
+
+            position = Vector3.Add(position, new Vector3((float)NewX, toTranslate.Y, (float)NewZ));
         }
     }
 
