@@ -115,12 +115,13 @@ namespace _3D_Engine
 
     internal class FTemplate
     {
-        internal string name;
-        internal List<FPolygon> polygons;
+        internal string name="invalid";
+        internal readonly List<FPolygon> polygons; // shouldn't change
         
         internal FTemplate(List<FPolygon> input, String name)
         {
             polygons = input;
+            this.name = name;
             
         }
     }
@@ -173,10 +174,7 @@ namespace _3D_Engine
 
         internal FCamera(Vector3 position, double FOV)
         {
-            if( FOV >360 || FOV<=0 )
-            {
-                throw new System.Exception("Camera's FOV must be between 0 ad 360. "+FOV+" falls outside of this range.");
-            }
+         
             this.FOV = FOV;
             this.position = position;
             this.active = true;

@@ -16,37 +16,31 @@ namespace _3D_Engine
     {
         private void Bresenham(int x, int y, int x2, int y2)
         {
-            int w = x2 - x;
-            int h = y2 - y;
-            int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
-            if (w < 0) dx1 = -1; else if (w > 0) dx1 = 1;
-            if (h < 0) dy1 = -1; else if (h > 0) dy1 = 1;
-            if (w < 0) dx2 = -1; else if (w > 0) dx2 = 1;
-            int longest = Math.Abs(w);
-            int shortest = Math.Abs(h);
-            if (!(longest > shortest))
+            
+
+            int dx = x2 - x;
+            int dy = y2 - y;
+            int D = 2 * dy - dx;
+            int j = y;
+
+            for (int i = x; i < x2; i++)
             {
-                longest = Math.Abs(h);
-                shortest = Math.Abs(w);
-                if (h < 0) dy2 = -1; else if (h > 0) dy2 = 1;
-                dx2 = 0;
-            }
-            int numerator = longest >> 1;
-            for(int i = 0; i <= longest; i++)
-            {
-                ScreenState[x, y] = new Color(50, 50, 50);
-                numerator += shortest;
-                if (!(numerator<longest))
-                {
-                    numerator -= longest;
-                    x += dx1;
-                    y += dy1;
+                
+                try
+                { 
+                    ScreenState[i, j] = new Color(50, 50, 50);
+                  
+                    if (D > 0)
+                    {
+                        j = j + 1;
+                        D = D - 2 * dx;
+                    }
                 }
-                else
+                catch
                 {
-                    x += dx2;
-                    y += dy2;
+                    Console.WriteLine("WireFrame: Something's off..."); 
                 }
+                D = D + 2 * dy;
             }
         }
         
@@ -83,8 +77,22 @@ namespace _3D_Engine
                         {
                             B = poly.screenVerticies[j + 1];
                         }
-
+                        if(A.X==-1||B.Y==-1)
+                        {
+                            continue;
+                        }
+                        if(A.X==B.X)
+                        {
+                            // okay, vertical line.
+                            for(int y= (int)((A.Y<B.Y)?A.Y:B.Y); y< (int)((A.Y > B.Y) ? A.Y : B.Y); y++)
+                            {
+                                ScreenState[(int)A.X, y] = new Color(50, 50, 50);
+                            }
+                        }
+                        //Bresenham( (int)(A.X<B.X?A.X:B.X), (int)(A.X < B.X ? A.Y : B.Y), (int)(A.X > B.X ? A.X : B.X), (int)(A.X > B.X ? A.Y : B.Y));
                         Bresenham((int)A.X, (int)A.Y, (int)B.X, (int)B.Y);
+                        ScreenState[(int)A.X, (int)A.Y] = Color.White;
+                        ScreenState[(int)B.X, (int)B.Y] = Color.White;
                     }
                     
                 }

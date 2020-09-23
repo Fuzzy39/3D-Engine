@@ -149,7 +149,6 @@ namespace _3D_Engine
             colors[0] = Color.White;
             pixel.SetData(colors);
 
-            // Now we need to initalize the objects.
             globalTemplates = (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
 
 
@@ -166,6 +165,10 @@ namespace _3D_Engine
 
 
             // This stuff runs once per frame.
+
+            // Object reader.
+            globalTemplates.Clear();
+            globalTemplates = (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
 
             // Scene Reader
             ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).scene.members.Clear();

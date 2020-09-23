@@ -52,7 +52,7 @@ namespace _3D_Engine
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
            
-            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer()};
+            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
             Console.WriteLine(moduleSetup[0].moduleType);
             Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
             base.Initialize();
@@ -117,12 +117,12 @@ namespace _3D_Engine
             if (inputHelper.IsMouseWheelScrolledUp())
             {
                 Fuzzy3D.activeCamera.FOV += .01;
-                Console.WriteLine(Fuzzy3D.activeCamera.FOV);
+              
             }
             if (inputHelper.IsMouseWheelScrolledDown())
             {
                 Fuzzy3D.activeCamera.FOV -= .01;
-                Console.WriteLine(Fuzzy3D.activeCamera.FOV);
+                
             }
             // TODO: Add your update logic here
             // We won't need this, at least not yet.

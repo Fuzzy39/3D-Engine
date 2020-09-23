@@ -27,18 +27,26 @@ namespace _3D_Engine
 
                 if (member is FCamera || member is FLightSource)
                 {
-                    
+                    //Console.WriteLine(((FCamera)member).position.X);
                     URS.Add(member);
                     continue;
                 }  
                 
                 if(member is FObject)
                 {
+                 
                     FObject fobject = (FObject)member; // member is now an FObject in the eyes of the law!
-                    for(int j = 0; j< fobject.template.polygons.Count; j++)
+                    
+                    for (int j = 0; j < fobject.template.polygons.Count; j++)
                     {
                         
-                        FPolygon poly = fobject.template.polygons[j];
+                        FPolygon poly = new FPolygon(fobject.template.polygons[j].verticies, fobject.template.polygons[j].color);
+                       
+                        for (int k = 0; k<poly.verticies.Length;k++)
+                        {
+                            poly.verticies[k] = Vector3.Add(poly.verticies[k], fobject.position);
+                        }
+                        
                         URS.Add(poly);
                     }
                     continue;

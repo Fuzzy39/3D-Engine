@@ -117,7 +117,7 @@ namespace _3D_Engine
 
             //   current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
-            Console.WriteLine(current_shape_holder.Count);
+         
             return (base.run());
         }
     }
