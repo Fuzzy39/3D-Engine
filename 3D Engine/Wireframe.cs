@@ -14,36 +14,91 @@ namespace _3D_Engine
 {
     class WireFrame : WireFrameModule
     {
-        private void Bresenham(int x, int y, int x2, int y2)
+        //How does this work? hell if I know!
+        private void Bresenham(int x0, int y0, int x1, int y1)
         {
-            
-
-            int dx = x2 - x;
-            int dy = y2 - y;
-            int D = 2 * dy - dx;
-            int j = y;
-
-            for (int i = x; i < x2; i++)
+            if (Math.Abs(y1 - y0) < Math.Abs(x1 - x0))
             {
-                
-                try
-                { 
-                    ScreenState[i, j] = new Color(50, 50, 50);
-                  
+                low(x0, y0, x1, y1);
+            }
+            else
+            {
+                if (y0 > y1)
+                {
+                    high(x1, y1, x0, y0);
+                }
+                else
+                {
+                    high(x0, y0, x1, y1);
+                }
+            }
+         }
+        
+        private void low(int x0, int y0, int x1, int y1)
+        { 
+
+            int dx = x1 - x0;
+            int dy = y1 - y0;
+            int yi = 1;
+            if (dy < 0)
+            {
+                yi = -1;
+                dy = -dy;
+            }
+            int D = (2 * dy) - dx;
+            int y = y0;
+
+            for (int x = x0; x < x1; x++)
+            {
+                ScreenState[x, y] = new Color(50, 50, 50);
+                if (D > 0)
+                {
+                    y = y + yi;
+                    D = D + (2 * (dy - dx));
+                }
+                else
+                {
+                    D = D + 2 * dy;
+                }
+            }
+            
+        }
+
+        private void high(int x0, int y0, int x1, int y1)
+        {
+
+            int dx = x1 - x0;
+            int dy = y1 - y0;
+            int xi = 1;
+            if (dx < 0)
+            {
+                xi = -1;
+                dx = -dx;
+            }
+            int D = (2 * dx) - dy;
+            int x = x0;
+            try
+            {
+                for (int y = y0; y < y1; x++)
+                {
+                    ScreenState[x, y] = new Color(50, 50, 50);
                     if (D > 0)
                     {
-                        j = j + 1;
-                        D = D - 2 * dx;
+                        x = x + xi;
+                        D = D + (2 * (dx - dy));
+                    }
+                    else
+                    {
+                        D = D + 2 * dx;
                     }
                 }
-                catch
-                {
-                    Console.WriteLine("WireFrame: Something's off..."); 
-                }
-                D = D + 2 * dy;
             }
+            catch
+            {
+                Console.WriteLine("This catch statement prevents everything from breaking. Something is clearly wrong...");
+            }
+
         }
-        
         internal override object run()
         {
             
