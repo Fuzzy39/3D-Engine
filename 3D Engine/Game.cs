@@ -68,10 +68,7 @@ namespace _3D_Engine
 
         protected override void Update(GameTime gameTime)
         {
-            FrameCounter counter = new FrameCounter();
-            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            counter.Update(deltaTime);
-            Console.WriteLine(counter.TotalFrames / counter.TotalSeconds);
+            
             //Console.WriteLine(deltaTime);
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
@@ -137,6 +134,8 @@ namespace _3D_Engine
 
         protected override void Draw(GameTime gameTime)
         {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Console.WriteLine(1.0f / deltaTime);
             GraphicsDevice.Clear(Color.PowderBlue);
             // This is were the rendering function of the 3d engine should go, but it would cause a crash, 
             // as none of the manditory modules are there.
