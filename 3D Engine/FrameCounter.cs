@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+
 public class FrameCounter
 {
     public FrameCounter()
@@ -13,7 +16,7 @@ public class FrameCounter
 
     private Queue<float> _sampleBuffer = new Queue<float>();
 
-    public override bool Update(float deltaTime)
+    public bool Update(float deltaTime)
     {
         CurrentFramesPerSecond = 1.0f / deltaTime;
 
