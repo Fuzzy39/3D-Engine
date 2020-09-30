@@ -68,6 +68,12 @@ namespace _3D_Engine
 
         protected override void Update(GameTime gameTime)
         {
+            FrameCounter counter = new FrameCounter();
+            var deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            counter.Update(deltaTime);
+            Console.WriteLine(counter.TotalFrames / counter.TotalSeconds);
+            //Console.WriteLine(deltaTime);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputHelper.Update();
