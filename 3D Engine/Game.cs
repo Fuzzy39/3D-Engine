@@ -52,7 +52,7 @@ namespace _3D_Engine
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
            
-            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(),new WireFrame()};
+            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
             Console.WriteLine(moduleSetup[0].moduleType);
             Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
             base.Initialize();
@@ -68,6 +68,9 @@ namespace _3D_Engine
 
         protected override void Update(GameTime gameTime)
         {
+            
+            //Console.WriteLine(deltaTime);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputHelper.Update();
@@ -105,7 +108,6 @@ namespace _3D_Engine
 
             if (inputHelper.IsKeyDown(Keys.Left))
             {
-
                 Fuzzy3D.activeCamera.Rotation += .05f;
             }
 
@@ -116,12 +118,12 @@ namespace _3D_Engine
 
             if (inputHelper.IsMouseWheelScrolledUp())
             {
-                Fuzzy3D.activeCamera.FOV += .01;
+                Fuzzy3D.activeCamera.FOV += .05;
               
             }
             if (inputHelper.IsMouseWheelScrolledDown())
             {
-                Fuzzy3D.activeCamera.FOV -= .01;
+                Fuzzy3D.activeCamera.FOV -= .05;
                 
             }
             // TODO: Add your update logic here
@@ -132,6 +134,8 @@ namespace _3D_Engine
 
         protected override void Draw(GameTime gameTime)
         {
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Console.WriteLine(1.0f / deltaTime);
             GraphicsDevice.Clear(Color.PowderBlue);
             // This is were the rendering function of the 3d engine should go, but it would cause a crash, 
             // as none of the manditory modules are there.
