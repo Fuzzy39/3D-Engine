@@ -39,7 +39,7 @@ namespace _3D_Engine
         private static Texture2D pixel; 
         public static FCamera activeCamera=null;
 
-        public static int scaleFactor = 3;
+        public static int scaleFactor = 1;
 
         public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {

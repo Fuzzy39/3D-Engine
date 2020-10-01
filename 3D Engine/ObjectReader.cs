@@ -30,7 +30,7 @@ namespace _3D_Engine
             //Instead of creating 12 different variables for each triangle I just use the current polygon and reset it each time
             //Then I just push the polygon to the array of polygons which I can just to the templates
             //First triangle on the first yz plane
-            
+            /*
              current_polygon[0] = new Vector3(0, 0, 0);
              current_polygon[1] = new Vector3(0, 1, 0);
              current_polygon[2] = new Vector3(0, 0, 1);
@@ -102,18 +102,28 @@ namespace _3D_Engine
              current_polygon[1] = new Vector3(1, 0, 1);
              current_polygon[2] = new Vector3(0, 1, 1);
              current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
-           
+           */
             // finish up.
             
-           /* current_polygon[0] = new Vector3(0, 0, 1);
-            current_polygon[1] = new Vector3(0, 1, 0);
-            current_polygon[2] = new Vector3(0, 0, 0);
+           current_polygon[0] = new Vector3(0, 0, 0);
+            current_polygon[1] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(1, 0, .5f);
             current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             current_polygon = new Vector3[3];
-            current_polygon[0] = new Vector3(0, 0, -1);
-            current_polygon[1] = new Vector3(0, 1, 0);
-            current_polygon[2] = new Vector3(0, 0, 0);
-            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));*/
+            current_polygon[0] = new Vector3(0, 0, 0);
+            current_polygon[1] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(0.5f, .866f, .5f);
+            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
+            current_polygon = new Vector3[3];
+            current_polygon[0] = new Vector3(1, 0, .5f);
+            current_polygon[1] = new Vector3(0, 0, 1);
+            current_polygon[2] = new Vector3(0.5f, .866f, .5f);
+            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
+            current_polygon = new Vector3[3];
+            current_polygon[0] = new Vector3(0, 0, 0);
+            current_polygon[1] = new Vector3(1, 0, .5f);
+            current_polygon[2] = new Vector3(0.5f, .866f, .5f);
+            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
 
             //   current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
