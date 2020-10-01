@@ -14,6 +14,7 @@ namespace _3D_Engine
 {
     class WireFrame : WireFrameModule
     {
+        Color linecolor = new Color(16, 64, 80);
         private void Bresenham(int x, int y, int x2, int y2)
         {
 
@@ -36,7 +37,10 @@ namespace _3D_Engine
                 int numerator = longest >> 1;
                 for (int i = 0; i <= longest; i++)
                 {
-                ScreenState[x, y] = new Color(100, 100, 100);
+                    if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
+                    {
+                        ScreenState[x, y] = linecolor;
+                    }
                     numerator += shortest;
                     if (!(numerator < longest))
                     {
@@ -94,7 +98,7 @@ namespace _3D_Engine
                             // okay, vertical line.
                             for(int y= (int)((A.Y<B.Y)?A.Y:B.Y); y< (int)((A.Y > B.Y) ? A.Y : B.Y); y++)
                             {
-                                ScreenState[(int)A.X, y] = new Color(50, 50, 50);
+                                ScreenState[(int)A.X, y] = linecolor;
                             }
                         }
                         //Bresenham( (int)(A.X<B.X?A.X:B.X), (int)(A.X < B.X ? A.Y : B.Y), (int)(A.X > B.X ? A.X : B.X), (int)(A.X > B.X ? A.Y : B.Y));

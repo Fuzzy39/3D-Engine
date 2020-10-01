@@ -70,13 +70,14 @@ namespace _3D_Engine
                         //okay, easy peasy, now just to get that to the screen
                         int x = (int)Math.Round((double)(locationOnViewport.X/viewportSize)*(screenState.GetLength(1)));
                         int y = (int)Math.Round((double)(locationOnViewport.Y / viewportSize) * (screenState.GetLength(1)));
-                       
-                        if(x>=0&y>=0&x <screenState.GetLength(1) & y<screenState.GetLength(1))
+
+                        ((FPolygon)LRS[i]).screenVerticies[j] = new Vector2(x, y);
+                        if (x>=0&y>=0&x <screenState.GetLength(1) & y<screenState.GetLength(1))
                         {
 
 
 
-                            ((FPolygon)LRS[i]).screenVerticies[j] = new Vector2(x, y);
+                            
                             screenState[x, y] = Color.White;
                         }
 
