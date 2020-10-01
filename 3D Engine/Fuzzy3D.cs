@@ -154,7 +154,7 @@ namespace _3D_Engine
 
         }
 
-        public static void Render( SpriteBatch sb)
+        public static void Render( SpriteBatch sb, float delta_time, SpriteFont input_font)
         {
             if(!initalized)
             {
@@ -219,7 +219,7 @@ namespace _3D_Engine
                     
                 }
             }
-
+            sb.DrawString(input_font, Convert.ToString(1.0f / delta_time), new Vector2(1, 1), Color.White);
             sb.End();
         }
 

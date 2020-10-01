@@ -33,6 +33,7 @@ namespace _3D_Engine
         // Monogame kinda requires these.
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteFont font;
         
         public Game()
         {
@@ -51,6 +52,7 @@ namespace _3D_Engine
             _graphics.PreferredBackBufferWidth = 600; 
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
+            
            
             Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
             Console.WriteLine(moduleSetup[0].moduleType);
@@ -62,7 +64,7 @@ namespace _3D_Engine
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            font = Content.Load<SpriteFont>("File");
             // TODO: use this.Content to load your game content here
         }
 
@@ -134,14 +136,13 @@ namespace _3D_Engine
 
         protected override void Draw(GameTime gameTime)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Console.WriteLine(1.0f / deltaTime);
+            //Console.WriteLine(1.0f / deltaTime);
             GraphicsDevice.Clear(Color.PowderBlue);
             // This is were the rendering function of the 3d engine should go, but it would cause a crash, 
             // as none of the manditory modules are there.
             // Fuzzy3D.Render();
-
-            Fuzzy3D.Render(_spriteBatch);
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Fuzzy3D.Render(_spriteBatch, deltaTime, font);
             base.Draw(gameTime);
         
         }
