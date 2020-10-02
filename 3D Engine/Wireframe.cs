@@ -96,17 +96,29 @@ namespace _3D_Engine
                         if(A.X==B.X)
                         {
                             // okay, vertical line.
-                            for(int y= (int)((A.Y<B.Y)?A.Y:B.Y); y< (int)((A.Y > B.Y) ? A.Y : B.Y); y++)
+                            for(int vertY= (int)((A.Y<B.Y)?A.Y:B.Y); vertY< (int)((A.Y > B.Y) ? A.Y : B.Y); vertY++)
                             {
-                                ScreenState[(int)A.X, y] = linecolor;
+                                ScreenState[(int)A.X, vertY] = linecolor;
                             }
                         }
                         //Bresenham( (int)(A.X<B.X?A.X:B.X), (int)(A.X < B.X ? A.Y : B.Y), (int)(A.X > B.X ? A.X : B.X), (int)(A.X > B.X ? A.Y : B.Y));
                         Bresenham((int)A.X, (int)A.Y, (int)B.X, (int)B.Y);
-                        ScreenState[(int)A.X, (int)A.Y] = Color.White;
-                        ScreenState[(int)B.X, (int)B.Y] = Color.White;
+                        int x = (int)A.X;
+                        int y = (int)A.Y;
+                        if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
+                        {
+                            ScreenState[(int)x, (int)y] = Color.White;
+                           
+                        }
+                        x = (int)B.X;
+                        y = (int)B.Y;
+                        if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
+                        {
+                            ScreenState[(int)x, (int)y] = Color.White;
+
+                        }
                     }
-                    
+
                 }
             }
 
