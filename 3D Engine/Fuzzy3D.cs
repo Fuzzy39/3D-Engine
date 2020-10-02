@@ -41,7 +41,7 @@ namespace _3D_Engine
 
         public static int scaleFactor = 1;
 
-        public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
+        public static void Initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
             // Basically, for the engine to work, the user has to decide the modules that it will recive.
 
