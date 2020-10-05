@@ -7,7 +7,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
 using _3D_Engine;
-using System.Security.Cryptography.X509Certificates;
 using System.Runtime.InteropServices;
 
 namespace _3D_Engine
@@ -17,8 +16,7 @@ namespace _3D_Engine
         Color linecolor = new Color(16, 64, 80);
         private void Bresenham(int x, int y, int x2, int y2)
         {
-
-            
+                //This will be the funtion for drawing a line to our output sprite
                 int w = x2 - x;
                 int h = y2 - y;
                 int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
@@ -69,10 +67,10 @@ namespace _3D_Engine
 
                 }
             }
-
+            //Loop through the polygons of the scene that have been rasterized
             for (int i = 0; i < LRS.Count; i++)
             {
-                
+                //Check to see if it is a polygon and then loop though it's vertices
                 if (LRS[i] is FPolygon)
                 {
                     FPolygon poly = (FPolygon)LRS[i];
