@@ -27,7 +27,7 @@ namespace _3D_Engine
     public class Game : Microsoft.Xna.Framework.Game
     {
 
-        InputHelper inputHelper = new InputHelper();
+        readonly InputHelper inputHelper = new InputHelper();
         // The actual class that I was refering to above.
 
         // Monogame kinda requires these.
@@ -56,7 +56,7 @@ namespace _3D_Engine
            
             Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer()};
             Console.WriteLine(moduleSetup[0].moduleType);
-            Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
+            Fuzzy3D.Initialize(moduleSetup, _graphics, GraphicsDevice);
             base.Initialize();
         }
 
