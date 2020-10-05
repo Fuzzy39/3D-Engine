@@ -40,8 +40,8 @@ namespace Fuzzy3D
             get { return _moduleType; }
         }
 
-    internal GraphicsDeviceManager graphics;
-        protected internal virtual void init( GraphicsDeviceManager graphics )
+        internal GraphicsDeviceManager graphics;
+        internal virtual void init( GraphicsDeviceManager graphics )
         {
             this.graphics = graphics;
         }
@@ -50,7 +50,7 @@ namespace Fuzzy3D
 
         // Aparently there is a way to have multiplle return types: ( int name, string name ) 
         // but then it requires you to return both, so we're using object as a stand in for anything.
-        protected internal abstract object run();
+        internal abstract object run();
 
       
     }

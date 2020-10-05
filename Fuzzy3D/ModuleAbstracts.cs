@@ -32,14 +32,14 @@ namespace Fuzzy3D
         
         private List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
-        protected internal override void init(GraphicsDeviceManager graphics)
+        internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             
             
         }
 
-        protected internal override object run() 
+        internal override object run() 
         {
             return Templates;
         }
