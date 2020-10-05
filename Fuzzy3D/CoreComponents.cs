@@ -56,17 +56,19 @@ namespace Fuzzy3D
     }
 
 
-    internal class FPolygon : FSceneMember
+    public class FPolygon : FSceneMember
     {
         // okay, this should be pretty simple.
         // A polygon consists of 3 vectors, a base color, and texture.
         // We could get deeper into the weeds about this stuff, but we won't get there.
-        internal Vector3[] verticies; // public is fine, right
+
+        // the user should not be able to change these at a whim, so they are internal
+        internal Vector3[] verticies; 
         internal Color color;
         internal Texture texture;
         internal Vector2[] screenVerticies = { new Vector2(-1,-1), new Vector2(-1, -1) , new Vector2(-1, -1)};
 
-        public FPolygon (Vector3[] vertices, Color color)
+        internal FPolygon (Vector3[] vertices, Color color)
         {
             if(vertices.Length!=3)
             {
@@ -78,7 +80,7 @@ namespace Fuzzy3D
             this.texture = null; // in case that wasn't already explicit, it's null.
         }
 
-        public FPolygon(Vector3[] vertices, Color color, Texture texture)
+        internal FPolygon(Vector3[] vertices, Color color, Texture texture)
         {
             if (vertices.Length != 3)
             {
@@ -92,7 +94,7 @@ namespace Fuzzy3D
 
 
 
-        public void translate(float byX, float byY, float byZ )
+        internal void translate(float byX, float byY, float byZ )
         {
             for(int i = 0; i<verticies.Length;i++)
             {
