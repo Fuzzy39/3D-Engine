@@ -11,8 +11,8 @@ namespace Fuzzy3D
 {
     public class ObjectReader : ObjectReaderModule
     {
-        
-        internal override object run()
+
+        protected internal override object run()
         {
 
             /*
