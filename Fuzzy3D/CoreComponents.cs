@@ -34,8 +34,8 @@ namespace Fuzzy3D
     public abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
     {
         
-        public readonly ModuleTypes moduleType;
-    
+        protected ModuleTypes _moduleType;
+        
 
         internal GraphicsDeviceManager graphics;
         protected internal virtual void init( GraphicsDeviceManager graphics )
@@ -47,7 +47,7 @@ namespace Fuzzy3D
 
         // Aparently there is a way to have multiplle return types: ( int name, string name ) 
         // but then it requires you to return both, so we're using object as a stand in for anything.
-        internal abstract object run();
+        protected internal abstract object run();
 
       
     }

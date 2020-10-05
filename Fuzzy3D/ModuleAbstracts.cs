@@ -22,15 +22,15 @@ namespace Fuzzy3D
      * 
      */
 
-    protected internal abstract class ObjectReaderModule : Module
+    public abstract class ObjectReaderModule : Module
     {
         protected internal ObjectReaderModule()
         {
 
-            base.moduleType = ModuleTypes.ObjectReader;
+            base._moduleType = ModuleTypes.ObjectReader;
         }
         
-        protected internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
+        private List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
         protected internal override void init(GraphicsDeviceManager graphics)
         {
@@ -39,7 +39,7 @@ namespace Fuzzy3D
             
         }
 
-        internal override object run() 
+        protected internal override object run() 
         {
             return Templates;
         }
