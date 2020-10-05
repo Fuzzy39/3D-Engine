@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30204.135
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "3D Engine", "3D Engine\3D Engine.csproj", "{14458006-25CC-4275-9158-48241355ECF5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "3D Engine", "3D Engine\3D Engine.csproj", "{14458006-25CC-4275-9158-48241355ECF5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Fuzzy3D", "Fuzzy3D\Fuzzy3D.csproj", "{14A50159-CC87-4478-8889-CA8F2CEC992B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fuzzy3DModules", "Fuzzy3DModules\Fuzzy3DModules.csproj", "{DDAD0E1F-DCFA-4433-B0C4-58AFD6C6665A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{14458006-25CC-4275-9158-48241355ECF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{14458006-25CC-4275-9158-48241355ECF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{14458006-25CC-4275-9158-48241355ECF5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14A50159-CC87-4478-8889-CA8F2CEC992B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14A50159-CC87-4478-8889-CA8F2CEC992B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14A50159-CC87-4478-8889-CA8F2CEC992B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14A50159-CC87-4478-8889-CA8F2CEC992B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDAD0E1F-DCFA-4433-B0C4-58AFD6C6665A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDAD0E1F-DCFA-4433-B0C4-58AFD6C6665A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDAD0E1F-DCFA-4433-B0C4-58AFD6C6665A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDAD0E1F-DCFA-4433-B0C4-58AFD6C6665A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

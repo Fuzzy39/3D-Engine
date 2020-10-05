@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
     /* What's this?
      * ---------------------
@@ -22,17 +22,17 @@ namespace _3D_Engine
      * 
      */
 
-    abstract class ObjectReaderModule : Module
+    protected internal abstract class ObjectReaderModule : Module
     {
-        internal ObjectReaderModule()
+        protected internal ObjectReaderModule()
         {
 
-            base._moduleType = ModuleTypes.ObjectReader;
+            base.moduleType = ModuleTypes.ObjectReader;
         }
         
-        internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
+        protected internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
-        internal override void init(GraphicsDeviceManager graphics)
+        protected internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
             

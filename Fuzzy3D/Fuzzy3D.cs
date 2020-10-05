@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
     static class Fuzzy3D
     {

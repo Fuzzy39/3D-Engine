@@ -6,13 +6,13 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
-using _3D_Engine;
+
 using System.Security.Cryptography.X509Certificates;
 using System.Runtime.InteropServices;
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
-    class WireFrame : WireFrameModule
+    public class WireFrame : WireFrameModule
     {
         Color linecolor = new Color(16, 64, 80);
         private void Bresenham(int x, int y, int x2, int y2)

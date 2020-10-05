@@ -6,10 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
-using _3D_Engine;
 
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
 
     /* What's This?
@@ -18,7 +17,7 @@ namespace _3D_Engine
      * Simple enough, I think.
      * Only module is here for now.
      */
-    enum ModuleTypes
+    public enum ModuleTypes
     {
         ObjectReader,
         SceneReader,
@@ -32,18 +31,14 @@ namespace _3D_Engine
   
     }
 
-    abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
+    public abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
     {
-        // This is private to set and public to get.
-        internal ModuleTypes _moduleType;
-        public ModuleTypes moduleType
-        {
-            get { return this._moduleType; }
+        
+        public readonly ModuleTypes moduleType;
     
-        }
 
         internal GraphicsDeviceManager graphics;
-        internal virtual void init( GraphicsDeviceManager graphics )
+        protected internal virtual void init( GraphicsDeviceManager graphics )
         {
             this.graphics = graphics;
         }
