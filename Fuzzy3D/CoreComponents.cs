@@ -41,7 +41,7 @@ namespace Fuzzy3D
         }
 
         internal GraphicsDeviceManager graphics;
-        protected internal virtual void init( GraphicsDeviceManager graphics )
+        internal virtual void init( GraphicsDeviceManager graphics )
         {
             this.graphics = graphics;
         }
