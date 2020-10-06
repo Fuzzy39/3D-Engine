@@ -30,7 +30,7 @@ namespace Fuzzy3D
             base._moduleType = ModuleTypes.ObjectReader;
         }
         
-        protected List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
+        internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
 
         internal override void init(GraphicsDeviceManager graphics)
         {
