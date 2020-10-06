@@ -52,7 +52,7 @@ namespace Fuzzy3D
             // loop through and make sure all required types exist.
             for(int i=0; i<requiredTypes.Length; i++)
             {
-                if (Type.GetType("_3D_Engine." + requiredTypes[i])==null)
+                if (Type.GetType("Fuzzy3D." + requiredTypes[i])==null)
                 {
                     failedTypes++;
                     Console.WriteLine("Fuzzy3D: Fatal Error: Core module is missing components: Cannot find type " + requiredTypes[i]);
