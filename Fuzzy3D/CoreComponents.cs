@@ -113,12 +113,12 @@ namespace Fuzzy3D
     }
 
 
-    internal class FTemplate
+    public class FTemplate
     {
         public readonly string name;
         internal readonly List<FPolygon> polygons; // shouldn't change
         
-        public FTemplate(List<FPolygon> input, String name)
+        internal FTemplate(List<FPolygon> input, String name)
         {
             polygons = input;
             this.name = name;

@@ -30,8 +30,8 @@ namespace Fuzzy3D
             base._moduleType = ModuleTypes.ObjectReader;
         }
         
-        protected List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
-
+        //protected List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
+        public List<FTemplate> Templates { get; protected set; } = new List<FTemplate>();
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
@@ -46,7 +46,7 @@ namespace Fuzzy3D
 
     }
 
-    abstract class SceneReaderModule : Module
+    public abstract class SceneReaderModule : Module
     {
         internal List<FTemplate> templates;
         internal FScene scene;
@@ -74,7 +74,7 @@ namespace Fuzzy3D
 
     }
 
-    abstract class ReferenceCreatorModule : Module
+    public abstract class ReferenceCreatorModule : Module
     {
         internal FScene scene;
         internal List<FSceneMember> URS; // Universal Referece System
@@ -100,7 +100,7 @@ namespace Fuzzy3D
         }
     }
 
-    abstract class TransformerModule : Module
+    public abstract class TransformerModule : Module
     {
         internal List<FSceneMember> URS;
         internal List<FSceneMember> LRS; // Local Referece System
@@ -124,7 +124,7 @@ namespace Fuzzy3D
         }
     }
 
-    abstract class RasterizerModule : Module
+    public abstract class RasterizerModule : Module
     {
         // I havent a clue what goes in here.
         internal List<FSceneMember> LRS;
@@ -154,7 +154,7 @@ namespace Fuzzy3D
             return screenState;
         }
     }
-    abstract class WireFrameModule : Module
+    public abstract class WireFrameModule : Module
     {
         internal List<FSceneMember> LRS;
         internal Color[,] ScreenState;
