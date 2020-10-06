@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Fuzzy3D
 {
-    static class Fuzzy3D
+    public static class Fuzzy3D
     {
 
         

@@ -164,10 +164,10 @@ namespace Fuzzy3D
     }
 
   
-    internal class FCamera : FSceneMember
+    public class FCamera : FSceneMember
     {
-        internal double FOV; // Field of view, in degrees.
-        internal Vector3 position;
+        public double FOV; // Field of view, in degrees.
+        public Vector3 position;
         internal bool active; // whether the camera is the one being piped to the screen.
         public double Rotation = 0; // in Pi radians, where 2 is a full rotation.
         // And some variable for angle, that we will currently ignore.

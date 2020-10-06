@@ -56,7 +56,8 @@ namespace _3D_Engine
            
             Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer()};
             Console.WriteLine(moduleSetup[0].moduleType);
-            Fuzzy3D.Initialize(moduleSetup, _graphics, GraphicsDevice);
+            Fuzzy3D.Fuzzy3D.Initialize(moduleSetup, _graphics, GraphicsDevice);
+        
             base.Initialize();
         }
 
@@ -76,6 +77,7 @@ namespace _3D_Engine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputHelper.Update();
+            /*
             if (inputHelper.IsKeyDown(Keys.W))
             {
                 Fuzzy3D.activeCamera.translateRelative(new Vector3(.05f, 0, 0));
@@ -130,7 +132,7 @@ namespace _3D_Engine
             }
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
-
+            */
             base.Update(gameTime);
         }
 
@@ -142,7 +144,7 @@ namespace _3D_Engine
             // as none of the manditory modules are there.
             // Fuzzy3D.Render();
             float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Fuzzy3D.Render(_spriteBatch, deltaTime, font);
+            Fuzzy3D.Fuzzy3D.Render(_spriteBatch, deltaTime, font);
             base.Draw(gameTime);
         
         }
