@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Fuzzy3D
 {
-    public class Transformer : TransformerModule
+    internal class Transformer : TransformerModule
     {
         internal override object run()
         {
