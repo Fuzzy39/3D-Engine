@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Fuzzy3D
 {
-    internal class BasicRasterizer : RasterizerModule
+    public class BasicRasterizer : RasterizerModule
     {
         internal override object run()
         {

@@ -9,7 +9,7 @@ using System.ComponentModel;
 
 namespace Fuzzy3D
 {
-    internal class basicReferenceCreator : ReferenceCreatorModule
+    public class basicReferenceCreator : ReferenceCreatorModule
     {
         internal override object run()
         {

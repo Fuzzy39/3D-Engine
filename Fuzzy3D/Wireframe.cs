@@ -12,7 +12,7 @@ using System.Runtime.InteropServices;
 
 namespace Fuzzy3D
 {
-    internal class WireFrame : WireFrameModule
+    public class WireFrame : WireFrameModule
     {
         Color linecolor = new Color(16, 64, 80);
         private void Bresenham(int x, int y, int x2, int y2)

@@ -10,7 +10,7 @@ using System.ComponentModel;
 
 namespace Fuzzy3D
 {
-    internal class SceneReader : SceneReaderModule{
+    public class SceneReader : SceneReaderModule{
         internal override object run()
         {
             scene.addObject(templates[0], new Vector3(0, 0, 0));
