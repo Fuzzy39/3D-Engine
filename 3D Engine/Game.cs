@@ -77,62 +77,62 @@ namespace _3D_Engine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputHelper.Update();
-            /*
+            
             if (inputHelper.IsKeyDown(Keys.W))
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(.05f, 0, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(.05f, 0, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.A))
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, -.05f));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, -.05f));
             }
 
             if (inputHelper.IsKeyDown(Keys.S))
             {
              
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(-.05f, 0, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(-.05f, 0, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.D) )
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, .05f));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, .05f));
             }
 
             if (inputHelper.IsKeyDown(Keys.LeftShift))
             {
 
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, .05f, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, .05f, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.LeftControl))
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, -.05f, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, -.05f, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.Left))
             {
-                Fuzzy3D.activeCamera.Rotation += .05f;
+                Fuzzy3D.Fuzzy3D.activeCamera.Rotation += .05f;
             }
 
             if (inputHelper.IsKeyDown(Keys.Right))
             {
-                Fuzzy3D.activeCamera.Rotation-= .05f;
+                Fuzzy3D.Fuzzy3D.activeCamera.Rotation-= .05f;
             }
 
             if (inputHelper.IsMouseWheelScrolledUp())
             {
-                Fuzzy3D.activeCamera.FOV += .05;
+                Fuzzy3D.Fuzzy3D.activeCamera.FOV += .05;
               
             }
             if (inputHelper.IsMouseWheelScrolledDown())
             {
-                Fuzzy3D.activeCamera.FOV -= .05;
+                Fuzzy3D.Fuzzy3D.activeCamera.FOV -= .05;
                 
             }
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
-            */
+            
             base.Update(gameTime);
         }
 
