@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Fuzzy3D;
 namespace _3D_Engine
 {
     /*
