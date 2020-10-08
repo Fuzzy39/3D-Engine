@@ -98,6 +98,7 @@ namespace Fuzzy3D
         {
             for(int i = 0; i<verticies.Length;i++)
             {
+                //Move the triangle by the given cordinates
                 verticies[i].X += byX;
                 verticies[i].Y += byY;
                 verticies[i].Z += byZ;
@@ -120,6 +121,7 @@ namespace Fuzzy3D
         
         internal FTemplate(List<FPolygon> input, String name)
         {
+            //Set the name and polygons of the template
             polygons = input;
             this.name = name;
             

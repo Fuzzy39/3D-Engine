@@ -17,8 +17,10 @@ namespace Fuzzy3D
         Color linecolor = new Color(16, 64, 80);
         private void Bresenham(int x, int y, int x2, int y2)
         {
-
-            
+            /*
+             * This function is for drawing the line onto the screen
+             * I know nothing else about it
+            */
                 int w = x2 - x;
                 int h = y2 - y;
                 int dx1 = 0, dy1 = 0, dx2 = 0, dy2 = 0;
@@ -78,7 +80,7 @@ namespace Fuzzy3D
                     FPolygon poly = (FPolygon)LRS[i];
                     for (int j = 0;j < poly.verticies.Length;j++)
                     {
-                        // get the 2 vector3s we will be drawing the line from.
+                        // get the 2 vector2s we will be drawing the line from.
                         Vector2 A = poly.screenVerticies[j];
                         Vector2 B;
                         if (j == poly.verticies.Length - 1)
