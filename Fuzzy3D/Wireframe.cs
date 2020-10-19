@@ -17,7 +17,7 @@ namespace Fuzzy3D
         Color linecolor = new Color(16, 64, 80);
         private void Bresenham(int x, int y, int x2, int y2)
         {
-
+            //This function is for drawing a line across two points
             
                 int w = x2 - x;
                 int h = y2 - y;
