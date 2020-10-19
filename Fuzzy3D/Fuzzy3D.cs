@@ -167,23 +167,30 @@ namespace Fuzzy3D
             // This stuff runs once per frame.
 
             // Object reader.
-            globalTemplates.Clear();
-            globalTemplates = (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
-
-            // Scene Reader
-            ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).scene.members.Clear();
-            ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).templates=globalTemplates;
-            FScene scene = (FScene)modules[(int)ModuleTypes.SceneReader].run();
-            
+            //globalTemplates.Clear();
          
+            
+            // Scene Reader
+            // define:
+            SceneReaderModule sceneReader = (SceneReaderModule)modules[(int)ModuleTypes.SceneReader];
+            // Reset:
+            sceneReader.scene.members.Clear();
+            // Give it templates it needs.
+            sceneReader.templates=globalTemplates;
+            // Get new scene:
+            FScene scene = (FScene)sceneReader.run();
+
+
 
             // Reference creator
             // give the scene to reference creator.
             // Let's just pretend this makes any amount of sense.
-            ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).URS.Clear();
-            ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).scene = scene;
+            ReferenceCreatorModule referenceCreator = (ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator];
+            referenceCreator.URS.Clear();
+            referenceCreator.scene = scene;
             // universal reference system.
-            List<FSceneMember> URS = (List<FSceneMember>)modules[(int)ModuleTypes.ReferenceCreator].run();
+
+            List<FSceneMember> URS = (List<FSceneMember>)referenceCreator.run();
 
 
             // Transformer:
