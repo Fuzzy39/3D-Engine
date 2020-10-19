@@ -69,10 +69,11 @@ namespace Fuzzy3D
 
                 }
             }
-
+            //Loop through all objects in the LRS
             for (int i = 0; i < LRS.Count; i++)
             {
-                
+                Console.WriteLine(LRS.Count);
+                //If an object is a polygon
                 if (LRS[i] is FPolygon)
                 {
                     FPolygon poly = (FPolygon)LRS[i];
