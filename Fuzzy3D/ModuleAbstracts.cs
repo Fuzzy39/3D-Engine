@@ -182,6 +182,16 @@ namespace Fuzzy3D
             
             return ScreenState;
         }
+        internal struct Line
+        {
+            internal Vector2 first;
+            internal Vector2 second;
+            internal Line(Vector2 first, Vector2 second)
+            {
+                this.first = first;
+                this.second = second;
+            }
+        }
     }
     // And when the core module is more complete, Secondary modules should be added.
 

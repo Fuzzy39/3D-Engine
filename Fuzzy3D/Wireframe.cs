@@ -69,6 +69,7 @@ namespace Fuzzy3D
 
                 }
             }
+            List<Line> drawn_lines = new List<Line>();
             //Loop through all objects in the LRS
             for (int i = 0; i < LRS.Count; i++)
             {
@@ -79,6 +80,7 @@ namespace Fuzzy3D
                     FPolygon poly = (FPolygon)LRS[i];
                     for (int j = 0;j < poly.verticies.Length;j++)
                     {
+                        bool cancel = false;
                         // get the 2 vector3s we will be drawing the line from.
                         Vector2 A = poly.screenVerticies[j];
                         Vector2 B;
@@ -94,29 +96,47 @@ namespace Fuzzy3D
                         {
                             continue;
                         }
-                        if(A.X==B.X)
+                        for(int g = 0; g < drawn_lines.Count; g++)
                         {
-                            // okay, vertical line.
-                            for(int vertY= (int)((A.Y<B.Y)?A.Y:B.Y); vertY< (int)((A.Y > B.Y) ? A.Y : B.Y); vertY++)
+                            //Check if the points are the same as one previously drawn
+                            if(A == drawn_lines[g].first && B == drawn_lines[g].second)
                             {
-                                ScreenState[(int)A.X, vertY] = linecolor;
+                                cancel = true;
+                            }
+                            else if(A == drawn_lines[g].second && B == drawn_lines[g].first)
+                            {
+                                cancel = true;
                             }
                         }
-                        //Bresenham( (int)(A.X<B.X?A.X:B.X), (int)(A.X < B.X ? A.Y : B.Y), (int)(A.X > B.X ? A.X : B.X), (int)(A.X > B.X ? A.Y : B.Y));
-                        Bresenham((int)A.X, (int)A.Y, (int)B.X, (int)B.Y);
-                        int x = (int)A.X;
-                        int y = (int)A.Y;
-                        if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
+                        //Dont run the rest of the code if the line has already been drawn
+                        if (!cancel)
                         {
-                            ScreenState[(int)x, (int)y] = Color.White;
-                           
-                        }
-                        x = (int)B.X;
-                        y = (int)B.Y;
-                        if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
-                        {
-                            ScreenState[(int)x, (int)y] = Color.White;
+                            if (A.X == B.X)
+                            {
+                                // okay, vertical line.
+                                for (int vertY = (int)((A.Y < B.Y) ? A.Y : B.Y); vertY < (int)((A.Y > B.Y) ? A.Y : B.Y); vertY++)
+                                {
+                                    ScreenState[(int)A.X, vertY] = linecolor;
+                                }
+                            }
+                            //Bresenham( (int)(A.X<B.X?A.X:B.X), (int)(A.X < B.X ? A.Y : B.Y), (int)(A.X > B.X ? A.X : B.X), (int)(A.X > B.X ? A.Y : B.Y));
+                            Bresenham((int)A.X, (int)A.Y, (int)B.X, (int)B.Y);
+                            int x = (int)A.X;
+                            int y = (int)A.Y;
+                            if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
+                            {
+                                ScreenState[(int)x, (int)y] = Color.White;
 
+                            }
+                            x = (int)B.X;
+                            y = (int)B.Y;
+                            if (x >= 0 & y >= 0 & x < ScreenState.GetLength(1) & y < ScreenState.GetLength(1))
+                            {
+                                ScreenState[(int)x, (int)y] = Color.White;
+
+                            }
+                            //Record the line we just drew
+                            drawn_lines.Add(new Line(A, B));
                         }
                     }
 
