@@ -95,7 +95,18 @@ namespace Fuzzy3D
             this.surfaceNormal = normal;
         }
 
+        internal FPolygon(Vector3[] vertices, Color color)
+        {
+            if (vertices.Length != 3)
+            {
+                throw new System.Exception("Polygons require 3 Points!");
+            }
 
+            this.verticies = vertices;
+            this.color = color;
+            this.texture = null; // in case that wasn't already explicit, it's null.
+            this.surfaceNormal = new Vector3(0,0,0);
+        }
 
 
         internal void translate(float byX, float byY, float byZ )
