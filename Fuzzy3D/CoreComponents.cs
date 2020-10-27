@@ -69,7 +69,7 @@ namespace Fuzzy3D
         internal Vector2[] screenVerticies = { new Vector2(-1,-1), new Vector2(-1, -1) , new Vector2(-1, -1)};
         internal Vector3 surface_normal;
 
-        internal FPolygon (Vector3[] vertices, Color color)
+        internal FPolygon (Vector3[] vertices, Color color, Vector3 normal)
         {
             if(vertices.Length!=3)
             {

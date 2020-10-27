@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using System.IO;
 using System.Data;
+using Microsoft.Xna.Framework.Audio;
 
 namespace Fuzzy3D
 {
@@ -19,8 +20,8 @@ namespace Fuzzy3D
              * 36 times.
              * It saves a bit of time.
              */
-            List<FPolygon> current_shape_holder = new List<FPolygon>();
-            Vector3[] current_polygon = new Vector3[3];
+            //List<FPolygon> current_shape_holder = new List<FPolygon>();
+            //Vector3[] current_polygon = new Vector3[3];
 
             //Add cube
             //Instead of creating 12 different variables for each triangle I just use the current polygon and reset it each time
@@ -100,7 +101,7 @@ namespace Fuzzy3D
              current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
            */
             // finish up.
-            
+            /*
            current_polygon[0] = new Vector3(0, 0, 0);
             current_polygon[1] = new Vector3(0, 0, 1);
             current_polygon[2] = new Vector3(1, 0, .5f);
@@ -123,7 +124,7 @@ namespace Fuzzy3D
 
             //   current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
-         
+         */
             return (base.run());
         }
     }
@@ -134,9 +135,11 @@ namespace Fuzzy3D
         internal override object run()
         {
             //For now just have one object
-            const string file_name = "Name of file";
+            const string file_name = "C:/Users/Owner/source/repos/qwerty4967/3D-Engine/Fuzzy3DModules/Monkey.stl";
             //Check to see if is good
             BinaryReader file_reader;
+            List<FPolygon> polygons = new List<FPolygon>();
+            
             try
             {
                 file_reader = new BinaryReader(File.Open(file_name, FileMode.Open));
@@ -144,16 +147,23 @@ namespace Fuzzy3D
                 ulong num_facets = file_reader.ReadUInt32();//get the number of facets
                 for(ulong counter = 0; counter < num_facets; counter++)//Loops through all of the facets
                 {
-                    FPolygon current;
                     //This code runs for each triangle which has 12, 4 byte float numbers the first three are for the normal of the triangle
+                    //Have an array of vertices so it is easy to make an FPolygon from them
+                    Vector3[] vertices = new Vector3[3];
                     //Get the normal, since it is only three things I will hard code
-
+                    //Apparently ReadSingle returns a float so,
+                    Vector3 normal = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
+                    vertices[0] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
+                    vertices[1] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
+                    vertices[2] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
+                    polygons.Add(new FPolygon(vertices, new Color(0,0,0), normal));//Add polygon to the list
                 }
             }
             catch
             {
                 Console.WriteLine("File can't be opened");
             }
+            Templates.Add(new FTemplate(polygons, "Monkey"));//Add our generated list to the thing
             return base.run();
         }
     }

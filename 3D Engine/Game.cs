@@ -54,7 +54,7 @@ namespace _3D_Engine
             _graphics.ApplyChanges();
             
            
-            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
+            Module[] moduleSetup = { new FileObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
             Console.WriteLine(moduleSetup[0].moduleType);
             Fuzzy3D.Fuzzy3D.Initialize(moduleSetup, _graphics, GraphicsDevice);
         
