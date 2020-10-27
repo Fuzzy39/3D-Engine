@@ -1,11 +1,8 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Collections;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System.ComponentModel;
+using System.IO;
+using System.Data;
 
 namespace Fuzzy3D
 {
@@ -128,6 +125,36 @@ namespace Fuzzy3D
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
          
             return (base.run());
+        }
+    }
+
+    public class FileObjectReader : ObjectReaderModule
+    {
+
+        internal override object run()
+        {
+            //For now just have one object
+            const string file_name = "Name of file";
+            //Check to see if is good
+            BinaryReader file_reader;
+            try
+            {
+                file_reader = new BinaryReader(File.Open(file_name, FileMode.Open));
+                file_reader.ReadBytes(80);//Skip the header which is useless to us
+                ulong num_facets = file_reader.ReadUInt32();//get the number of facets
+                for(ulong counter = 0; counter < num_facets; counter++)//Loops through all of the facets
+                {
+                    FPolygon current;
+                    //This code runs for each triangle which has 12, 4 byte float numbers the first three are for the normal of the triangle
+                    //Get the normal, since it is only three things I will hard code
+
+                }
+            }
+            catch
+            {
+                Console.WriteLine("File can't be opened");
+            }
+            return base.run();
         }
     }
 }
