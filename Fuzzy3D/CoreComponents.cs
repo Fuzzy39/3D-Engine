@@ -69,6 +69,19 @@ namespace Fuzzy3D
         internal Vector2[] screenVerticies = { new Vector2(-1,-1), new Vector2(-1, -1) , new Vector2(-1, -1)};
         internal Vector3 surfaceNormal;
 
+        internal FPolygon(Vector3[] vertices, Color color, Vector3 normal, Texture texture)
+        {
+            if (vertices.Length != 3)
+            {
+                throw new System.Exception("Polygons require 3 Points!");
+            }
+
+            this.verticies = vertices;
+            this.color = color;
+            this.texture = texture; // in case that wasn't already explicit, it's null.
+            this.surfaceNormal = normal;
+        }
+
         internal FPolygon (Vector3[] vertices, Color color, Vector3 normal)
         {
             if(vertices.Length!=3)
@@ -79,19 +92,9 @@ namespace Fuzzy3D
             this.verticies = vertices;
             this.color = color;
             this.texture = null; // in case that wasn't already explicit, it's null.
+            this.surfaceNormal = normal;
         }
 
-        internal FPolygon(Vector3[] vertices, Color color, Texture texture)
-        {
-            if (vertices.Length != 3)
-            {
-                throw new System.Exception("Polygons require 3 Points!");
-            }
-
-            this.verticies = vertices;
-            this.color = color;
-            this.texture = texture; 
-        }
 
 
 
