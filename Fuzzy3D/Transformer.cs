@@ -85,8 +85,24 @@ namespace Fuzzy3D
                  
                     Vector3[] prev = ((FPolygon)MRS[y]).verticies;
                     Vector3[] next = {Rotate2D(prev[0], camRot), Rotate2D(prev[1], camRot), Rotate2D(prev[2], camRot) };
-                   
-                    LRS.Add(new FPolygon(next, ((FPolygon)MRS[y]).color));
+
+                    
+                    // Now we check about surface normal
+                    if (((FPolygon)MRS[y]).surfaceNormal == null)
+                    {
+                        LRS.Add(new FPolygon(next, ((FPolygon)MRS[y]).color));
+                    }
+                    else
+                    {
+                        FPolygon poly = new FPolygon(next, ((FPolygon)MRS[y]).color);
+                        poly.surfaceNormal = ((FPolygon)MRS[y]).surfaceNormal;
+
+                        if ( Math.Abs(Math.Acos(poly.surfaceNormal.X))>Math.PI )
+                        {
+                            LRS.Add(poly);
+                        }
+
+                    }
                     
               
                     continue;
