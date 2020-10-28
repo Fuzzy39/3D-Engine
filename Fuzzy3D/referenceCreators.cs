@@ -40,7 +40,7 @@ namespace Fuzzy3D
                     for (int j = 0; j < fobject.template.polygons.Count; j++)
                     {
                         
-                        FPolygon poly = new FPolygon(fobject.template.polygons[j].verticies, fobject.template.polygons[j].color);
+                        FPolygon poly = new FPolygon(fobject.template.polygons[j].verticies, fobject.template.polygons[j].color, fobject.template.polygons[j].surfaceNormal);
                        
                         for (int k = 0; k<poly.verticies.Length;k++)
                         {

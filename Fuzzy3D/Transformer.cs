@@ -58,7 +58,7 @@ namespace Fuzzy3D
                     Vector3[] prev = ((FPolygon)URS[y]).verticies;
                     Vector3[] next = { Vector3.Subtract(prev[0], cam), Vector3.Subtract(prev[1], cam), Vector3.Subtract(prev[2], cam) };
                    
-                    MRS.Add(new FPolygon(next, ((FPolygon)URS[y]).color));
+                    MRS.Add(new FPolygon(next, ((FPolygon)URS[y]).color, ((FPolygon)URS[y]).surfaceNormal));
                     continue;
                 }
                 if (URS[y] is FCamera)
@@ -94,9 +94,9 @@ namespace Fuzzy3D
                     }
                     else
                     {
-                        FPolygon poly = new FPolygon(next, ((FPolygon)MRS[y]).color);
-                        poly.surfaceNormal = ((FPolygon)MRS[y]).surfaceNormal;
-
+                        FPolygon poly = new FPolygon(next, ((FPolygon)MRS[y]).color, ((FPolygon)MRS[y]).surfaceNormal );
+                      
+                        Console.WriteLine("Y: "+y+" Vector: "+poly.surfaceNormal.X+", "+poly.surfaceNormal.Y+", "+poly.surfaceNormal.Z+" Angle: "+Math.Abs(Math.Acos(poly.surfaceNormal.X)));
                         if ( Math.Abs(Math.Acos(poly.surfaceNormal.X))>Math.PI )
                         {
                             LRS.Add(poly);

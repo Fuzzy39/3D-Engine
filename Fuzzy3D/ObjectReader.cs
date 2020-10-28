@@ -135,7 +135,7 @@ namespace Fuzzy3D
         internal override object run()
         {
             //For now just have one object
-            const string file_name = "C:/Users/Owner/source/repos/qwerty4967/3D-Engine/Fuzzy3DModules/Monkey.stl";
+            const string file_name = "C:/Users/mason/source/repos/3D-Engine/Fuzzy3DModules/Monkey.stl";
             //Check to see if is good
             BinaryReader file_reader;
             List<FPolygon> polygons = new List<FPolygon>();
