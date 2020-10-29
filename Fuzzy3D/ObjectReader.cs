@@ -145,6 +145,7 @@ namespace Fuzzy3D
                 file_reader = new BinaryReader(File.Open(file_name, FileMode.Open));
                 file_reader.ReadBytes(80);//Skip the header which is useless to us
                 ulong num_facets = file_reader.ReadUInt32();//get the number of facets
+                //Console.WriteLine(num_facets);
                 for(ulong counter = 0; counter < num_facets; counter++)//Loops through all of the facets
                 {
                     //This code runs for each triangle which has 12, 4 byte float numbers the first three are for the normal of the triangle
@@ -157,6 +158,32 @@ namespace Fuzzy3D
                     vertices[1] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
                     vertices[2] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
                     polygons.Add(new FPolygon(vertices, new Color(0,0,0), normal));//Add polygon to the list
+                    /*for(int h = 0; h < 3; h++)
+                    {
+                        
+                        Console.Write("X. ");
+                        Console.Write(vertices[h].X);
+                        Console.Write(" ");
+                        Console.Write("Y. ");
+                        Console.Write(vertices[h].Y);
+                        Console.Write(" ");
+                        Console.Write("Z. ");
+                        Console.Write(vertices[h].Z);
+                        Console.WriteLine(" ");
+                        
+                    }
+                    
+                    Console.Write("X: ");
+                    Console.Write(normal.X);
+                    Console.Write(" ");
+                    Console.Write("Y: ");
+                    Console.Write(normal.Y);
+                    Console.Write(" ");
+                    Console.Write("X: ");
+                    Console.Write(normal.Z);
+                    Console.WriteLine(" ");
+                    file_reader.ReadBytes(2);
+                    */
                 }
             }
             catch
