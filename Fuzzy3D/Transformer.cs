@@ -97,7 +97,7 @@ namespace Fuzzy3D
                         FPolygon poly = new FPolygon(next, ((FPolygon)MRS[y]).color, ((FPolygon)MRS[y]).surfaceNormal );
                       
                         Console.WriteLine("Y: "+y+" Vector: "+poly.surfaceNormal.X+", "+poly.surfaceNormal.Y+", "+poly.surfaceNormal.Z+" Angle: "+Math.Abs(Math.Acos(poly.surfaceNormal.X)));
-                        if ( Math.Abs(Math.Acos(poly.surfaceNormal.X))>Math.PI )
+                        if ( Math.Abs(Math.Acos(poly.surfaceNormal.X))> Math.PI || Double.IsNaN(Math.Abs(Math.Acos(poly.surfaceNormal.X))))
                         {
                             LRS.Add(poly);
                         }
