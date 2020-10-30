@@ -135,7 +135,7 @@ namespace Fuzzy3D
         internal override object run()
         {
             //For now just have one object
-            const string file_name = "C:/Users/mason/source/repos/3D-Engine/Fuzzy3DModules/Monkey.stl";
+            const string file_name = "C:/Users/Owner/source/repos/qwerty4967/3D-Engine/Fuzzy3DModules/Monkey.stl";
             //Check to see if is good
             BinaryReader file_reader;
             List<FPolygon> polygons = new List<FPolygon>();
@@ -158,6 +158,7 @@ namespace Fuzzy3D
                     vertices[1] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
                     vertices[2] = new Vector3(file_reader.ReadSingle(), file_reader.ReadSingle(), file_reader.ReadSingle());
                     polygons.Add(new FPolygon(vertices, new Color(0,0,0), normal));//Add polygon to the list
+                    file_reader.ReadBytes(2);
                     /*for(int h = 0; h < 3; h++)
                     {
                         
@@ -182,8 +183,9 @@ namespace Fuzzy3D
                     Console.Write("X: ");
                     Console.Write(normal.Z);
                     Console.WriteLine(" ");
-                    file_reader.ReadBytes(2);
                     */
+
+
                 }
             }
             catch
