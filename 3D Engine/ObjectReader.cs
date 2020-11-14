@@ -105,7 +105,7 @@ namespace _3D_Engine
            */
             // finish up.
             
-           current_polygon[0] = new Vector3(0, 0, 0);
+            current_polygon[0] = new Vector3(0, 0, 0);
             current_polygon[1] = new Vector3(0, 0, 1);
             current_polygon[2] = new Vector3(1, 0, .5f);
             current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
