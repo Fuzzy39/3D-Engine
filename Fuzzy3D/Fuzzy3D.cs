@@ -5,9 +5,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
-    static class Fuzzy3D
+    public static class Fuzzy3D
     {
 
         
@@ -41,7 +41,7 @@ namespace _3D_Engine
 
         public static int scaleFactor = 1;
 
-        public static void initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
+        public static void Initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
             // Basically, for the engine to work, the user has to decide the modules that it will recive.
 
@@ -52,7 +52,7 @@ namespace _3D_Engine
             // loop through and make sure all required types exist.
             for(int i=0; i<requiredTypes.Length; i++)
             {
-                if (Type.GetType("_3D_Engine." + requiredTypes[i])==null)
+                if (Type.GetType("Fuzzy3D." + requiredTypes[i])==null)
                 {
                     failedTypes++;
                     Console.WriteLine("Fuzzy3D: Fatal Error: Core module is missing components: Cannot find type " + requiredTypes[i]);
@@ -154,7 +154,7 @@ namespace _3D_Engine
 
         }
 
-        public static void Render( SpriteBatch sb)
+        public static void Render( SpriteBatch sb, float delta_time, SpriteFont input_font)
         {
             if(!initalized)
             {
@@ -167,23 +167,30 @@ namespace _3D_Engine
             // This stuff runs once per frame.
 
             // Object reader.
-            globalTemplates.Clear();
-            globalTemplates = (List<FTemplate>)(modules[(int)ModuleTypes.ObjectReader].run());
-
-            // Scene Reader
-            ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).scene.members.Clear();
-            ((SceneReaderModule)modules[(int)ModuleTypes.SceneReader]).templates=globalTemplates;
-            FScene scene = (FScene)modules[(int)ModuleTypes.SceneReader].run();
-            
+            //globalTemplates.Clear();
          
+            
+            // Scene Reader
+            // define:
+            SceneReaderModule sceneReader = (SceneReaderModule)modules[(int)ModuleTypes.SceneReader];
+            // Reset:
+            sceneReader.scene.members.Clear();
+            // Give it templates it needs.
+            sceneReader.templates=globalTemplates;
+            // Get new scene:
+            FScene scene = (FScene)sceneReader.run();
+
+
 
             // Reference creator
             // give the scene to reference creator.
             // Let's just pretend this makes any amount of sense.
-            ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).URS.Clear();
-            ((ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator]).scene = scene;
+            ReferenceCreatorModule referenceCreator = (ReferenceCreatorModule)modules[(int)ModuleTypes.ReferenceCreator];
+            referenceCreator.URS.Clear();
+            referenceCreator.scene = scene;
             // universal reference system.
-            List<FSceneMember> URS = (List<FSceneMember>)modules[(int)ModuleTypes.ReferenceCreator].run();
+
+            List<FSceneMember> URS = (List<FSceneMember>)referenceCreator.run();
 
 
             // Transformer:
@@ -219,7 +226,7 @@ namespace _3D_Engine
                     
                 }
             }
-
+            sb.DrawString(input_font, Convert.ToString(1.0f / delta_time), new Vector2(1, 1), Color.White);
             sb.End();
         }
 

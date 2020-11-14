@@ -6,10 +6,9 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.ComponentModel;
-using _3D_Engine;
 
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
 
     /* What's This?
@@ -18,7 +17,7 @@ namespace _3D_Engine
      * Simple enough, I think.
      * Only module is here for now.
      */
-    enum ModuleTypes
+    public enum ModuleTypes
     {
         ObjectReader,
         SceneReader,
@@ -32,14 +31,13 @@ namespace _3D_Engine
   
     }
 
-    abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
+    public abstract class Module // I'm not 100% sure weather this should be an interface or abstract class...
     {
-        // This is private to set and public to get.
-        internal ModuleTypes _moduleType;
+        
+        protected ModuleTypes _moduleType;
         public ModuleTypes moduleType
         {
-            get { return this._moduleType; }
-    
+            get { return _moduleType; }
         }
 
         internal GraphicsDeviceManager graphics;
@@ -58,17 +56,33 @@ namespace _3D_Engine
     }
 
 
-    internal class FPolygon : FSceneMember
+    public class FPolygon : FSceneMember
     {
         // okay, this should be pretty simple.
         // A polygon consists of 3 vectors, a base color, and texture.
         // We could get deeper into the weeds about this stuff, but we won't get there.
-        internal Vector3[] verticies; // public is fine, right
+
+        // the user should not be able to change these at a whim, so they are internal
+        internal Vector3[] verticies; 
         internal Color color;
         internal Texture texture;
         internal Vector2[] screenVerticies = { new Vector2(-1,-1), new Vector2(-1, -1) , new Vector2(-1, -1)};
+        internal Vector3 surfaceNormal;
 
-        public FPolygon (Vector3[] vertices, Color color)
+        internal FPolygon(Vector3[] vertices, Color color, Vector3 normal, Texture texture)
+        {
+            if (vertices.Length != 3)
+            {
+                throw new System.Exception("Polygons require 3 Points!");
+            }
+
+            this.verticies = vertices;
+            this.color = color;
+            this.texture = texture; // in case that wasn't already explicit, it's null.
+            this.surfaceNormal = normal;
+        }
+
+        internal FPolygon (Vector3[] vertices, Color color, Vector3 normal)
         {
             if(vertices.Length!=3)
             {
@@ -78,9 +92,10 @@ namespace _3D_Engine
             this.verticies = vertices;
             this.color = color;
             this.texture = null; // in case that wasn't already explicit, it's null.
+            this.surfaceNormal = normal;
         }
 
-        public FPolygon(Vector3[] vertices, Color color, Texture texture)
+        internal FPolygon(Vector3[] vertices, Color color)
         {
             if (vertices.Length != 3)
             {
@@ -89,15 +104,16 @@ namespace _3D_Engine
 
             this.verticies = vertices;
             this.color = color;
-            this.texture = texture; 
+            this.texture = null; // in case that wasn't already explicit, it's null.
+            this.surfaceNormal = new Vector3(0,0,0);
         }
 
 
-
-        public void translate(float byX, float byY, float byZ )
+        internal void translate(float byX, float byY, float byZ )
         {
             for(int i = 0; i<verticies.Length;i++)
             {
+                //Move the triangle by the given cordinates
                 verticies[i].X += byX;
                 verticies[i].Y += byY;
                 verticies[i].Z += byZ;
@@ -113,13 +129,14 @@ namespace _3D_Engine
     }
 
 
-    internal class FTemplate
+    public class FTemplate
     {
-        internal string name="invalid";
+        public readonly string name;
         internal readonly List<FPolygon> polygons; // shouldn't change
         
         internal FTemplate(List<FPolygon> input, String name)
         {
+            //Set the name and polygons of the template
             polygons = input;
             this.name = name;
             
@@ -164,10 +181,10 @@ namespace _3D_Engine
     }
 
   
-    internal class FCamera : FSceneMember
+    public class FCamera : FSceneMember
     {
-        internal double FOV; // Field of view, in degrees.
-        internal Vector3 position;
+        public double FOV; // Field of view, in degrees.
+        public Vector3 position;
         internal bool active; // whether the camera is the one being piped to the screen.
         public double Rotation = 0; // in Pi radians, where 2 is a full rotation.
         // And some variable for angle, that we will currently ignore.

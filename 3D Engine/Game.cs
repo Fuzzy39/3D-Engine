@@ -4,7 +4,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Fuzzy3D;
 namespace _3D_Engine
 {
     /*
@@ -27,12 +27,13 @@ namespace _3D_Engine
     public class Game : Microsoft.Xna.Framework.Game
     {
 
-        InputHelper inputHelper = new InputHelper();
+        readonly InputHelper inputHelper = new InputHelper();
         // The actual class that I was refering to above.
 
         // Monogame kinda requires these.
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
+        private SpriteFont font;
         
         public Game()
         {
@@ -51,10 +52,12 @@ namespace _3D_Engine
             _graphics.PreferredBackBufferWidth = 600; 
             _graphics.PreferredBackBufferHeight = 600;
             _graphics.ApplyChanges();
+            
            
-            Module[] moduleSetup = { new ObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
+            Module[] moduleSetup = { new FileObjectReader(), new SceneReader(), new basicReferenceCreator(), new Transformer(), new BasicRasterizer(), new WireFrame()};
             Console.WriteLine(moduleSetup[0].moduleType);
-            Fuzzy3D.initialize(moduleSetup, _graphics, GraphicsDevice);
+            Fuzzy3D.Fuzzy3D.Initialize(moduleSetup, _graphics, GraphicsDevice);
+        
             base.Initialize();
         }
 
@@ -62,7 +65,7 @@ namespace _3D_Engine
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            font = Content.Load<SpriteFont>("File");
             // TODO: use this.Content to load your game content here
         }
 
@@ -74,74 +77,74 @@ namespace _3D_Engine
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
             inputHelper.Update();
+            
             if (inputHelper.IsKeyDown(Keys.W))
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(.05f, 0, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(.05f, 0, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.A))
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, -.05f));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, -.05f));
             }
 
             if (inputHelper.IsKeyDown(Keys.S))
             {
              
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(-.05f, 0, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(-.05f, 0, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.D) )
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, .05f));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, 0, .05f));
             }
 
             if (inputHelper.IsKeyDown(Keys.LeftShift))
             {
 
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, .05f, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, .05f, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.LeftControl))
             {
-                Fuzzy3D.activeCamera.translateRelative(new Vector3(0, -.05f, 0));
+                Fuzzy3D.Fuzzy3D.activeCamera.translateRelative(new Vector3(0, -.05f, 0));
             }
 
             if (inputHelper.IsKeyDown(Keys.Left))
             {
-                Fuzzy3D.activeCamera.Rotation += .05f;
+                Fuzzy3D.Fuzzy3D.activeCamera.Rotation += .05f;
             }
 
             if (inputHelper.IsKeyDown(Keys.Right))
             {
-                Fuzzy3D.activeCamera.Rotation-= .05f;
+                Fuzzy3D.Fuzzy3D.activeCamera.Rotation-= .05f;
             }
 
             if (inputHelper.IsMouseWheelScrolledUp())
             {
-                Fuzzy3D.activeCamera.FOV += .05;
+                Fuzzy3D.Fuzzy3D.activeCamera.FOV += .05;
               
             }
             if (inputHelper.IsMouseWheelScrolledDown())
             {
-                Fuzzy3D.activeCamera.FOV -= .05;
+                Fuzzy3D.Fuzzy3D.activeCamera.FOV -= .05;
                 
             }
             // TODO: Add your update logic here
             // We won't need this, at least not yet.
-
+            
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
-            Console.WriteLine(1.0f / deltaTime);
+            //Console.WriteLine(1.0f / deltaTime);
             GraphicsDevice.Clear(Color.PowderBlue);
             // This is were the rendering function of the 3d engine should go, but it would cause a crash, 
             // as none of the manditory modules are there.
             // Fuzzy3D.Render();
-
-            Fuzzy3D.Render(_spriteBatch);
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Fuzzy3D.Fuzzy3D.Render(_spriteBatch, deltaTime, font);
             base.Draw(gameTime);
         
         }

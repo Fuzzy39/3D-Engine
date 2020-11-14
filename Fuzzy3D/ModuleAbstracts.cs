@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
-namespace _3D_Engine
+namespace Fuzzy3D
 {
     /* What's this?
      * ---------------------
@@ -22,16 +22,16 @@ namespace _3D_Engine
      * 
      */
 
-    abstract class ObjectReaderModule : Module
+    public abstract class ObjectReaderModule : Module
     {
-        internal ObjectReaderModule()
+        protected internal ObjectReaderModule()
         {
 
             base._moduleType = ModuleTypes.ObjectReader;
         }
         
-        internal List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
-
+        //protected List<FTemplate> Templates = new List<FTemplate>();//<3DObject>;
+        public List<FTemplate> Templates { get; protected set; } = new List<FTemplate>();
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
@@ -46,7 +46,7 @@ namespace _3D_Engine
 
     }
 
-    abstract class SceneReaderModule : Module
+    public abstract class SceneReaderModule : Module
     {
         internal List<FTemplate> templates;
         internal FScene scene;
@@ -74,7 +74,7 @@ namespace _3D_Engine
 
     }
 
-    abstract class ReferenceCreatorModule : Module
+    public abstract class ReferenceCreatorModule : Module
     {
         internal FScene scene;
         internal List<FSceneMember> URS; // Universal Referece System
@@ -100,7 +100,7 @@ namespace _3D_Engine
         }
     }
 
-    abstract class TransformerModule : Module
+    public abstract class TransformerModule : Module
     {
         internal List<FSceneMember> URS;
         internal List<FSceneMember> LRS; // Local Referece System
@@ -124,7 +124,7 @@ namespace _3D_Engine
         }
     }
 
-    abstract class RasterizerModule : Module
+    public abstract class RasterizerModule : Module
     {
         // I havent a clue what goes in here.
         internal List<FSceneMember> LRS;
@@ -154,7 +154,7 @@ namespace _3D_Engine
             return screenState;
         }
     }
-    abstract class WireFrameModule : Module
+    public abstract class WireFrameModule : Module
     {
         internal List<FSceneMember> LRS;
         internal Color[,] ScreenState;
@@ -181,6 +181,16 @@ namespace _3D_Engine
         {
             
             return ScreenState;
+        }
+        internal struct Line
+        {
+            internal Vector2 first;
+            internal Vector2 second;
+            internal Line(Vector2 first, Vector2 second)
+            {
+                this.first = first;
+                this.second = second;
+            }
         }
     }
     // And when the core module is more complete, Secondary modules should be added.
