@@ -116,7 +116,16 @@ namespace Fuzzy3D
                                 // okay, vertical line.
                                 for (int vertY = (int)((A.Y < B.Y) ? A.Y : B.Y); vertY < (int)((A.Y > B.Y) ? A.Y : B.Y); vertY++)
                                 {
-                                    ScreenState[(int)A.X, vertY] = linecolor;
+                                    try
+                                    {
+                                        ScreenState[(int)A.X, vertY] = linecolor;
+                                    }
+                                    catch
+                                    {
+                                        Console.WriteLine("Caught something... don't know what, or why, but it's in wireframe.");
+                                        // meh, do nothing
+                                        break;
+                                    }
                                 }
                             }
                             //Bresenham( (int)(A.X<B.X?A.X:B.X), (int)(A.X < B.X ? A.Y : B.Y), (int)(A.X > B.X ? A.X : B.X), (int)(A.X > B.X ? A.Y : B.Y));

@@ -88,7 +88,7 @@ namespace Fuzzy3D
 
                     
                     // Now we check about surface normal
-                    if (((FPolygon)MRS[y]).surfaceNormal == null)
+                    if (((FPolygon)MRS[y]).surfaceNormal == new Vector3(0,0,0))
                     {
                         LRS.Add(new FPolygon(next, ((FPolygon)MRS[y]).color));
                     }

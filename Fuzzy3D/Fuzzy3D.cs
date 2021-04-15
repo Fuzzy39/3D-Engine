@@ -39,7 +39,7 @@ namespace Fuzzy3D
         private static Texture2D pixel; 
         public static FCamera activeCamera=null;
 
-        public static int scaleFactor = 1;
+        public static int scaleFactor = 3;
 
         public static void Initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
