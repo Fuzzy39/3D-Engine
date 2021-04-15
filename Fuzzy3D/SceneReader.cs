@@ -35,4 +35,36 @@ namespace Fuzzy3D
             return (base.run());
         }
     }
+
+    public class MultiSceneReader : SceneReaderModule
+    {
+        internal override object run()
+        {
+            //Add the object to the scene
+            for(int i = 0;  i<templates.Count; i++)
+            {
+                Console.WriteLine("HEYO"+i);
+                scene.addObject(templates[i], new Vector3(0, 2*i, 0));
+               
+            }
+
+
+
+            if (Fuzzy3D.activeCamera == null)
+            {
+                //Add a camera to the scene if there isn't one
+                FCamera cam = new FCamera(new Vector3(-2, .5f, .5f), .5);
+                cam.active = true;
+                scene.members.Add(cam);
+            }
+            else
+            {
+                //Push the already active camera to the scene members
+                scene.members.Add(Fuzzy3D.activeCamera);
+            }
+
+
+            return (base.run());
+        }
+    }
 }
