@@ -95,16 +95,16 @@ namespace Fuzzy3D
              current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             current_polygon = new Vector3[3];
             //Second triangle on the second xy plane
-
+            
            
             // finish up.
-            /*
+            
            
-*/
+
       
             //current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Cube"));
-
+            current_polygon = new Vector3[3];
             current_shape_holder = new List<FPolygon>();
             current_polygon[0] = new Vector3(1, 1, 1);
             current_polygon[1] = new Vector3(1, 0, 1);
@@ -130,6 +130,22 @@ namespace Fuzzy3D
             current_polygon[2] = new Vector3(0.5f, .866f, .5f);
             current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
             base.Templates.Add(new FTemplate(current_shape_holder, "Pyramid"));
+            
+            /*
+            current_polygon[0] = new Vector3(1, 1, 1);
+            current_polygon[1] = new Vector3(1, 1, 0);
+            current_polygon[2] = new Vector3(1, 0, 1);
+            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
+            
+            base.Templates.Add(new FTemplate(current_shape_holder, "Zero"));
+            current_polygon = new Vector3[3];
+            current_shape_holder = new List<FPolygon>();
+            current_polygon[0] = new Vector3(1, 1, 1);
+            current_polygon[1] = new Vector3(1, 1, 0);
+            current_polygon[2] = new Vector3(1, 0, 1);
+            current_shape_holder.Add(new FPolygon(current_polygon, Color.Gray));
+            current_polygon = new Vector3[3];
+            base.Templates.Add(new FTemplate(current_shape_holder, "One"));*/
 
             return (base.run());
         }

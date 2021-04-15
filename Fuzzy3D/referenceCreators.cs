@@ -34,17 +34,18 @@ namespace Fuzzy3D
                 
                 if(member is FObject)
                 {
-                 
+                    
                     FObject fobject = (FObject)member; // member is now an FObject in the eyes of the law!
                     
                     for (int j = 0; j < fobject.template.polygons.Count; j++)
                     {
-                        
+                        Console.WriteLine("Hola: " + i + " poly " + j+":");
                         FPolygon poly = new FPolygon(fobject.template.polygons[j].verticies, fobject.template.polygons[j].color, fobject.template.polygons[j].surfaceNormal);
                        
                         for (int k = 0; k<poly.verticies.Length;k++)
                         {
                             poly.verticies[k] = Vector3.Add(poly.verticies[k], fobject.position);
+                            Console.WriteLine(poly.verticies[k].X + ", "+ poly.verticies[k].Y+", "+ poly.verticies[k].Z);
                         }
                         
                         URS.Add(poly);
