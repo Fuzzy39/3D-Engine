@@ -39,7 +39,7 @@ namespace Fuzzy3D
         private static Texture2D pixel; 
         public static FCamera activeCamera=null;
 
-        public static int scaleFactor = 3;
+        public static int scaleFactor = 1;
 
         public static void Initialize(Module[] setup, GraphicsDeviceManager graphics, GraphicsDevice graphicsDevice)
         {
@@ -208,7 +208,7 @@ namespace Fuzzy3D
 
             if (modules[(int)ModuleTypes.WireFrame]!=null)
             {
-                screenState = null;
+                //screenState = null;
                 ((WireFrameModule)modules[(int)ModuleTypes.WireFrame]).LRS = LRS;
                 screenState = (Color[,])(modules[(int)ModuleTypes.WireFrame].run());
             }

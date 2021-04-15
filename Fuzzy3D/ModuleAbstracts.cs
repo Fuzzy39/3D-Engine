@@ -167,12 +167,13 @@ namespace Fuzzy3D
         internal override void init(GraphicsDeviceManager graphics)
         {
             base.init(graphics);
-           
 
-            //This needs to get screen size...
-            int Height = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            int Width = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            ScreenState = new Color[Width, Height];
+
+            //This needs to get screen size... 
+            int Height = graphics.PreferredBackBufferHeight;
+            int Width = graphics.PreferredBackBufferWidth;
+           
+            ScreenState = new Color[Width / Fuzzy3D.scaleFactor, Height / Fuzzy3D.scaleFactor];
         }
 
 
