@@ -122,7 +122,7 @@ namespace Fuzzy3D
                                     }
                                     catch
                                     {
-                                        Console.WriteLine("Caught something... don't know what, or why, but it's in wireframe.");
+                                        //Console.WriteLine("Caught something... don't know what, or why, but it's in wireframe.");
                                         // meh, do nothing
                                         break;
                                     }
