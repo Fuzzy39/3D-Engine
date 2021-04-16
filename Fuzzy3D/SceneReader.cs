@@ -54,7 +54,7 @@ namespace Fuzzy3D
             if (Fuzzy3D.activeCamera == null)
             {
                 //Add a camera to the scene if there isn't one
-                FCamera cam = new FCamera(new Vector3(-2, .5f, .5f), .5);
+                FCamera cam = new FCamera(new Vector3(-2*templates.Count, .5f, .5f+(.375f*templates.Count)), .5);
                 cam.active = true;
                 scene.members.Add(cam);
             }
