@@ -44,11 +44,11 @@ namespace Fuzzy3D
                        
                         
                             //poly.verticies[k] = Vector3.Add(poly.verticies[k], fobject.position);
-                            FPolygon finalPoly = new FPolygon(new Vector3[] { Vector3.Add(poly.verticies[0], fobject.position), Vector3.Add(poly.verticies[1], fobject.position), Vector3.Add(poly.verticies[2], fobject.position) }, poly.color, poly.surfaceNormal);
+                        FPolygon finalPoly = new FPolygon(new Vector3[] { Vector3.Add(poly.verticies[0], fobject.position), Vector3.Add(poly.verticies[1], fobject.position), Vector3.Add(poly.verticies[2], fobject.position) }, poly.color, poly.surfaceNormal);
                             //Console.WriteLine(poly.verticies[k].X + ", "+ poly.verticies[k].Y+", "+ poly.verticies[k].Z);
                         
                         
-                        URS.Add(poly);
+                        URS.Add(finalPoly);
                     }
                     continue;
                 }

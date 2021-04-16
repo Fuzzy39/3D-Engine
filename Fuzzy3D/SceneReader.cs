@@ -45,7 +45,7 @@ namespace Fuzzy3D
             for(int i = 0;  i<templates.Count; i++)
             {
                
-                scene.addObject(templates[i], new Vector3(0, 0, 2 * i ));
+                scene.addObject(templates[i], new Vector3(0, 0, 1.5f * i ));
                
             }
 
