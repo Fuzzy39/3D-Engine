@@ -40,11 +40,12 @@ namespace Fuzzy3D
     {
         internal override object run()
         {
+            
             //Add the object to the scene
             for(int i = 0;  i<templates.Count; i++)
             {
-                
-                scene.addObject(templates[i], new Vector3(0, 0, 0.01f * i));
+               
+                scene.addObject(templates[i], new Vector3(0, 0, 2 * i ));
                
             }
 

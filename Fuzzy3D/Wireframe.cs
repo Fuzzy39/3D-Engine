@@ -14,7 +14,7 @@ namespace Fuzzy3D
 {
     public class WireFrame : WireFrameModule
     {
-        Color linecolor = new Color(16, 64, 80);
+        Color linecolor = new Color(128, 180, 190);
         private void Bresenham(int x, int y, int x2, int y2)
         {
             //This function is for drawing a line across two points
@@ -73,7 +73,7 @@ namespace Fuzzy3D
             //Loop through all objects in the LRS
             for (int i = 0; i < LRS.Count; i++)
             {
-                Console.WriteLine(LRS.Count);
+                //Console.WriteLine(LRS.Count);
                 //If an object is a polygon
                 if (LRS[i] is FPolygon)
                 {
